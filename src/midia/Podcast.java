@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Media;
+package midia;
 
 /**
  *
  * @author 161150960
  */
-public abstract class Midia {
-    private String caminho;
-    private String nome;
-    private String descricao;
+public class Podcast extends Midia {
+    private String idioma;
+    private String autores;
+    private int ano;
 }

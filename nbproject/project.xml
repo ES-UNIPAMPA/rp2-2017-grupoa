@@ -11,5 +11,28 @@
                 <root id="test.src.dir"/>
             </test-roots>
         </data>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>Adiciona</word>
+            <word>Altera</word>
+            <word>ano</word>
+            <word>atributo</word>
+            <word>autores</word>
+            <word>Captura</word>
+            <word>caso</word>
+            <word>classe</word>
+            <word>Construtor</word>
+            <word>contrário</word>
+            <word>da</word>
+            <word>gênero</word>
+            <word>incluída</word>
+            <word>instrumento</word>
+            <word>instrumentos</word>
+            <word>int</word>
+            <word>lista</word>
+            <word>se</word>
+            <word>sucesso</word>
+            <word>um</word>
+            <word>uma</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>

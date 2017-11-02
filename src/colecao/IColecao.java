@@ -5,7 +5,7 @@
  */
 package colecao;
 
-import Media.Midia;
+import midia.Midia;
 
 /**
  *

@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Media;
+package midia;
 
-import java.util.Date;
 
 /**
  *
  * @author 161150960
  */
-public class Foto extends Midia {
-    private String fotografo;
-    private String pessoas;
-    private String local;
-    private Date data;
-    private Date hora;
+public class Musica extends Midia {
+    private String idioma;
+    private String genero;
+    private String autores;
+    private String interprete;
+    private double duracao;
+    private int ano;
 }

@@ -5,10 +5,13 @@
  */
 package colecao;
 
-import Media.Foto;
-import Media.Midia;
-import Media.Musica;
-import Media.Podcast;
+import midia.Midia;
+import midia.Musica;
+import midia.Podcast;
+import midia.Partitura;
+import midia.Jogo;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +21,16 @@ import java.util.List;
  */
 public class Colecao implements IColecao {
 
-    private List<Foto> listafoto;
-    private List<Musica> listamusica;
-    private List<Podcast> listapodcast;
+    private List<Musica> listaDeMusica;
+    private List<Podcast> listaDePodcast;
+    private List<Partitura> listaDePartituras;
+    private List<Jogo> listaDeJogos;
 
     public Colecao() {
-        this.listafoto = new ArrayList();
-        this.listamusica = new ArrayList();
-        this.listapodcast = new ArrayList();
+        this.listaDeMusica = new ArrayList();
+        this.listaDePodcast = new ArrayList();
+        this.listaDePartituras = new ArrayList();
+        this.listaDeJogos = new ArrayList();
     }
 
     @Override
@@ -52,5 +57,4 @@ public class Colecao implements IColecao {
     public Midia exibirMidia() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }
