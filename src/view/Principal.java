@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rp2;
+package view;
 
 /**
  *
  * @author 161150960
  */
-public class RP2 {
+public class Principal {
 
     /**
      * @param args the command line arguments
