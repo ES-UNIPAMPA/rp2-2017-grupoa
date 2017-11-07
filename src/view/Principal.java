@@ -7,7 +7,10 @@ package view;
 
 /**
  *
- * @author 161150960
+ * @author Leonardo Severo Pedroso
+ * <leopedroso45@gmail.com>
+ * <gustavosatheler@gmail.com>
+ * 
  */
 public class Principal {
 

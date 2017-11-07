@@ -7,7 +7,9 @@ package midia;
 
 /**
  *
- * @author 161150960
+ * @author Leonardo Severo Pedroso
+ * <leopedroso45@gmail.com>
+ * 
  */
 public abstract class Midia {
     private String caminho;

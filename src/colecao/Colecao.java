@@ -11,21 +11,29 @@ import midia.Podcast;
 import midia.Partitura;
 import midia.Jogo;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author 161150960
+ * @author Leonardo Severo Pedroso
+ * <leopedroso45@gmail.com>
+ *
  */
 public class Colecao implements IColecao {
-
+    
     private List<Musica> listaDeMusica;
     private List<Podcast> listaDePodcast;
     private List<Partitura> listaDePartituras;
     private List<Jogo> listaDeJogos;
 
+    /**
+     *
+     * Construtor da class Colecao
+     *
+     * Inicializa as listas de cada tipo de mídia
+     *
+     */
     public Colecao() {
         this.listaDeMusica = new ArrayList();
         this.listaDePodcast = new ArrayList();
