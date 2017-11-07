@@ -19,7 +19,9 @@ import java.util.List;
  * @author Leonardo Severo Pedroso
  * <leopedroso45@gmail.com>
  *
+ * Essa class colecao sera refatorada!! by Leo
  */
+@Deprecated
 public class Colecao implements IColecao {
 
     private List<Musica> listaDeMusica;
@@ -113,26 +115,27 @@ public class Colecao implements IColecao {
     }
 
     @Override
-    public boolean cadastrarMidia() {
+    public boolean cadastrarMidia(Midia midia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean removerMidia() {
+    public boolean removerMidia(String pesquisa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void editarMidia() {
+    public boolean editarMidia(String pesquisa, Midia midia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Midia consultarMidia() {
+    public List consultarMidia(String pesquisa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Midia exibirMidia() {
+    public List exibirMidia() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+}
