@@ -20,33 +20,91 @@ public class ColecaoMusica implements IColecao {
 
     private List<Musica> listaDeMusica;
 
+    /**
+     * Inicializa o array listaDeMusica.
+     */
     public ColecaoMusica() {
         listaDeMusica = new ArrayList();
     }
 
+    /**
+     *
+     * Retorna true se a midia passada por parametro for adiciona corretamente
+     * ao array e caso ocorra o contrario retorna false.
+     *
+     * @param midia
+     * @return true or false
+     */
     @Override
     public boolean cadastrarMidia(Midia midia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (listaDeMusica.add((Musica) midia)) {
+            return true;
+        }
+        return false;
     }
 
+    /**
+     *
+     * Recebe o nome da musica, percorre o array listaDeMusica procurando algum
+     * objeto com o titulo igual ao informado e o remove retornando true, caso o
+     * processo falhe ele retorna false.
+     *
+     * @param nome
+     * @return true or false;
+     */
     @Override
-    public boolean removerMidia(String pesquisa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean removerMidia(String nome) {
+        for (Musica musica : listaDeMusica) {
+            if (musica.getTitulo() == nome) {
+                listaDeMusica.remove(musica);
+                return true;
+            }
+        }
+        return false;
     }
 
+    /**
+     *
+     * Ainda nao implementado!
+     *
+     * @param pesquisa
+     * @param midia
+     * @return
+     * @deprecated
+     */
+    @Deprecated
     @Override
     public boolean editarMidia(String pesquisa, Midia midia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
+    /**
+     *
+     * Cria uma listaDeConsulta, percorre o array listaDeMusica e add cada
+     * musica no novo array e depois retorna o mesmo.
+     *
+     * @param pesquisa
+     * @return listaDeConsulta
+     */
     @Override
     public List consultarMidia(String pesquisa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Musica> listaDeConsulta = new ArrayList();
+        for (Musica musica : listaDeMusica) {
+            listaDeConsulta.add(musica);
+        }
+        return listaDeConsulta;
     }
 
+    /**
+     *
+     * Retorna a lista de Musicas
+     *
+     * @return listaDeMusica
+     */
     @Override
     public List exibirMidia() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.listaDeMusica;
     }
 
 }

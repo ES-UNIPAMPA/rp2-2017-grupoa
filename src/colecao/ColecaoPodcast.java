@@ -20,6 +20,9 @@ public class ColecaoPodcast implements IColecao {
 
     private List<Podcast> listaDePodcast;
 
+    /**
+     * Apenas inicializada um array vazio listaDePodcast
+     */
     public ColecaoPodcast() {
         listaDePodcast = new ArrayList();
     }
