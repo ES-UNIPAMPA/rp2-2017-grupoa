@@ -19,8 +19,8 @@ public class Jogo extends Midia {
     private int numeroJogadores;
     private boolean suporteRede;
 
-    public Jogo(String caminho, String nome, String descricao, String genero, String autores, int ano, int numeroJogadores, boolean suporteRede) {
-        super(caminho, nome, descricao);
+    public Jogo(String caminho, String titulo, String descricao, String genero, String autores, int ano, int numeroJogadores, boolean suporteRede) {
+        super(caminho, titulo, descricao);
         this.genero = genero;
         this.autores = autores;
         this.ano = ano;
@@ -116,5 +116,19 @@ public class Jogo extends Midia {
      */
     public void setSuporteRede(boolean suporteRede) {
         this.suporteRede = suporteRede;
+    }
+
+    @Override
+    public String toString() {
+        return "Jogo {" 
+                + "caminho = " + getCaminho()
+                + ",\n       nome = " + getTitulo() 
+                + ",\n       descricao = " + getDescricao() 
+                + ",\n       genero = " + genero 
+                + ",\n       autores = " + autores 
+                + ",\n       ano = " + ano 
+                + ",\n       numeroJogadores = " + numeroJogadores 
+                + ",\n       suporteRede = " + suporteRede 
+                + "\n   }";
     }
 }

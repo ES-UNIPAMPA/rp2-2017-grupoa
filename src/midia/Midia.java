@@ -13,12 +13,12 @@ package midia;
  */
 public abstract class Midia {
     private String caminho;
-    private String nome;
+    private String titulo;
     private String descricao;
 
-    public Midia(String caminho, String nome, String descricao) {
+    public Midia(String caminho, String titulo, String descricao) {
         this.caminho = caminho;
-        this.nome = nome;
+        this.titulo = titulo;
         this.descricao = descricao;
     }
 
@@ -30,12 +30,12 @@ public abstract class Midia {
         this.caminho = caminho;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescricao() {

@@ -7,9 +7,6 @@ package colecao;
 
 import midia.Midia;
 import midia.Musica;
-import midia.Podcast;
-import midia.Partitura;
-import midia.Jogo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +20,6 @@ import java.util.List;
 public class Colecao implements IColecao {
     
     private List<Musica> listaDeMusica;
-    private List<Podcast> listaDePodcast;
-    private List<Partitura> listaDePartituras;
-    private List<Jogo> listaDeJogos;
 
     /**
      *
@@ -36,9 +30,6 @@ public class Colecao implements IColecao {
      */
     public Colecao() {
         this.listaDeMusica = new ArrayList();
-        this.listaDePodcast = new ArrayList();
-        this.listaDePartituras = new ArrayList();
-        this.listaDeJogos = new ArrayList();
     }
 
     @Override

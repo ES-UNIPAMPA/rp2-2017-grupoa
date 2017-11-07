@@ -99,4 +99,17 @@ public class Partitura extends Midia {
     public boolean addInstrumentos(String instrumento) {
         return this.instrumentos.add(instrumento);
     }
+    
+    @Override
+    public String toString() {
+        return "Partitura {" 
+                + "caminho = " + getCaminho()
+                + ",\n       nome = " + getTitulo() 
+                + ",\n       descricao = " + getDescricao() 
+                + ",\n       genero = " + genero 
+                + ",\n       autores = " + autores 
+                + ",\n       ano = " + ano 
+                + ",\n       instrumentos = " + instrumentos 
+                + "\n   }";
+    }
 }
