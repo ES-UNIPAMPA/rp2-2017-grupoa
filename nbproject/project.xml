@@ -17,6 +17,7 @@
             <word>Altera</word>
             <word>alterada</word>
             <word>ano</word>
+            <word>arquivo</word>
             <word>atributo</word>
             <word>atualizada</word>
             <word>autores</word>
@@ -32,8 +33,10 @@
             <word>da</word>
             <word>Exibe</word>
             <word>foi</word>
+            <word>forem</word>
             <word>gênero</word>
             <word>incluída</word>
+            <word>incluídas</word>
             <word>informada</word>
             <word>informado</word>
             <word>informações</word>
@@ -44,7 +47,9 @@
             <word>Midia</word>
             <word>mídia</word>
             <word>mídias</word>
+            <word>ou</word>
             <word>palavra</word>
+            <word>partir</word>
             <word>parâmetro</word>
             <word>pesquisa</word>
             <word>pesquisada</word>
@@ -52,10 +57,12 @@
             <word>removida</word>
             <word>se</word>
             <word>sucesso</word>
+            <word>texto</word>
             <word>todas</word>
             <word>um</word>
             <word>uma</word>
             <word>utilizado</word>
+            <word>várias</word>
         </spellchecker-wordlist>
     </configuration>
 </project>

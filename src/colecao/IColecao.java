@@ -5,6 +5,8 @@
  */
 package colecao;
 
+import java.io.File;
+
 import java.util.List;
 import midia.Midia;
 
@@ -57,4 +59,13 @@ public interface IColecao {
      * @return Uma Lista de com todas as mídias.
      */
     public List exibirMidia();
+
+    /**
+     * Adiciona uma ou várias mídias a coleção a partir de um arquivo de texto.
+     *
+     * @param arquivo
+     * @return True se as mídias forem incluídas com sucesso e False caso
+     * contrário.
+     */
+    public boolean importarMidia(File arquivo);
 }

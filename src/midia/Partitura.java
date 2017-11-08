@@ -18,9 +18,9 @@ public class Partitura extends Midia {
     private String genero;
     private String autores;
     private int ano;
-    private List<String> instrumentos;
+    private String instrumentos;
 
-    public Partitura(String caminho, String nome, String descricao, String genero, String autores, int ano, List<String> instrumentos) {
+    public Partitura(String caminho, String nome, String descricao, String genero, String autores, int ano, String instrumentos) {
         super(caminho, nome, descricao);
         this.genero = genero;
         this.autores = autores;
@@ -72,7 +72,7 @@ public class Partitura extends Midia {
     public int getAno() {
         return this.ano;
     }
-    
+
     /**
      * Altera o atributo autores.
      *
@@ -81,35 +81,35 @@ public class Partitura extends Midia {
     public void setAno(int ano) {
         this.ano = ano;
     }
-    
+
     /**
      * Captura uma lista de instrumentos.
      *
-     * @return List
+     * @return instrumentos
      */
-    public List<String> getInstrumentos() {
+    public String getInstrumentos() {
         return this.instrumentos;
     }
-    
+
     /**
      * Adiciona um instrumento a lista.
-     * @param instrumento String
-     * @return True se a String for incluída com sucesso e False caso contrário.
+     *
+     * @param instrumentos String
      */
-    public boolean addInstrumentos(String instrumento) {
-        return this.instrumentos.add(instrumento);
+    public void setInstrumentos(String instrumentos) {
+        this.instrumentos = instrumentos;
     }
-    
+
     @Override
     public String toString() {
-        return "Partitura {" 
+        return "Partitura {"
                 + "caminho = " + getCaminho()
-                + ",\n       nome = " + getTitulo() 
-                + ",\n       descricao = " + getDescricao() 
-                + ",\n       genero = " + genero 
-                + ",\n       autores = " + autores 
-                + ",\n       ano = " + ano 
-                + ",\n       instrumentos = " + instrumentos 
+                + ",\n       nome = " + getTitulo()
+                + ",\n       descricao = " + getDescricao()
+                + ",\n       genero = " + genero
+                + ",\n       autores = " + autores
+                + ",\n       ano = " + ano
+                + ",\n       instrumentos = " + instrumentos
                 + "\n   }";
     }
 }

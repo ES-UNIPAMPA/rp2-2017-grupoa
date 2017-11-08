@@ -5,11 +5,20 @@
  */
 package colecao;
 
+import gerais.LeitorArquivo;
+
 import midia.Midia;
 import midia.Jogo;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
 import java.util.List;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -73,9 +82,62 @@ public class ColecaoJogos implements IColecao {
         return this.listaDeJogos;
     }
 
+    @Override
+    public boolean importarMidia(File arquivo) {
+        FileReader reader;
+        BufferedReader buff;
+
+        try {
+            reader = new FileReader(arquivo);
+            buff = new BufferedReader(reader);
+
+            String caminho;
+            String titulo;
+            String descricao;
+
+            String genero;
+            String autores;
+            int ano;
+            int numeroJogadores;
+            boolean suporteRede;
+
+            while ((caminho = buff.readLine()) != null) {
+
+                titulo = buff.readLine();
+                descricao = buff.readLine();
+
+                // Atributos da classe
+                genero = buff.readLine();
+                autores = buff.readLine();
+                ano = Integer.parseInt(buff.readLine());
+                numeroJogadores = Integer.parseInt(buff.readLine());
+                suporteRede = Boolean.parseBoolean(buff.readLine());
+
+                this.cadastrarMidia(new Jogo(caminho, titulo, descricao, genero, autores, ano, numeroJogadores, suporteRede));
+
+                //Soltar uma linha
+                buff.readLine();
+            }
+        } catch (NumberFormatException e) {
+            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+
+        } catch (NullPointerException e) {
+            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+
+        } catch (IOException e) {
+            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        }
+
+        return true;
+    }
+
     private boolean filtroPesquisa(String pesquisa, Midia midia) {
         return (midia.getCaminho().toUpperCase()).contains(pesquisa.toUpperCase())
                 || (midia.getTitulo().toUpperCase()).contains(pesquisa.toUpperCase())
                 || (midia.getDescricao().toUpperCase()).contains(pesquisa.toUpperCase());
     }
+
 }

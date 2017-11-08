@@ -120,7 +120,7 @@ public class Jogo extends Midia {
 
     @Override
     public String toString() {
-        return "Jogo {" 
+        return "\nJogo {" 
                 + "caminho = " + getCaminho()
                 + ",\n       nome = " + getTitulo() 
                 + ",\n       descricao = " + getDescricao() 
@@ -129,6 +129,6 @@ public class Jogo extends Midia {
                 + ",\n       ano = " + ano 
                 + ",\n       numeroJogadores = " + numeroJogadores 
                 + ",\n       suporteRede = " + suporteRede 
-                + "\n   }";
+                + "\n}";
     }
 }
