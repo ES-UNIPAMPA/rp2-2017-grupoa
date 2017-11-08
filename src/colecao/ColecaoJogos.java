@@ -5,8 +5,6 @@
  */
 package colecao;
 
-import view.LeitorArquivo;
-
 import midia.Midia;
 import midia.Jogo;
 
@@ -17,8 +15,6 @@ import java.io.IOException;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

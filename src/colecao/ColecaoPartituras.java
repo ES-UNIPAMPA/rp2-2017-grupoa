@@ -79,7 +79,9 @@ public class ColecaoPartituras implements IColecao {
     }
 
     @Override
-    public void importarMidia(String arquivo) throws NumberFormatException, NullPointerException, IOException {
+    public void importarMidia(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
+        File arquivo = new File(caminhoArquivo);
+        
         FileReader reader = new FileReader(arquivo);
         BufferedReader buff = new BufferedReader(reader);
 
