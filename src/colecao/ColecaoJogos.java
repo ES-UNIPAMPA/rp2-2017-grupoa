@@ -5,7 +5,7 @@
  */
 package colecao;
 
-import gerais.LeitorArquivo;
+import view.LeitorArquivo;
 
 import midia.Midia;
 import midia.Jogo;
@@ -83,55 +83,39 @@ public class ColecaoJogos implements IColecao {
     }
 
     @Override
-    public boolean importarMidia(File arquivo) {
-        FileReader reader;
-        BufferedReader buff;
+    public void importarMidia(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
+        File arquivo = new File(caminhoArquivo);
+        
+        FileReader reader = new FileReader(arquivo);
+        BufferedReader buff = new BufferedReader(reader);
 
-        try {
-            reader = new FileReader(arquivo);
-            buff = new BufferedReader(reader);
+        String caminho;
+        String titulo;
+        String descricao;
 
-            String caminho;
-            String titulo;
-            String descricao;
+        String genero;
+        String autores;
+        int ano;
+        int numeroJogadores;
+        boolean suporteRede;
 
-            String genero;
-            String autores;
-            int ano;
-            int numeroJogadores;
-            boolean suporteRede;
+        while ((caminho = buff.readLine()) != null) {
 
-            while ((caminho = buff.readLine()) != null) {
+            titulo = buff.readLine();
+            descricao = buff.readLine();
 
-                titulo = buff.readLine();
-                descricao = buff.readLine();
+            // Atributos da classe
+            genero = buff.readLine();
+            autores = buff.readLine();
+            ano = Integer.parseInt(buff.readLine());
+            numeroJogadores = Integer.parseInt(buff.readLine());
+            suporteRede = Boolean.parseBoolean(buff.readLine());
 
-                // Atributos da classe
-                genero = buff.readLine();
-                autores = buff.readLine();
-                ano = Integer.parseInt(buff.readLine());
-                numeroJogadores = Integer.parseInt(buff.readLine());
-                suporteRede = Boolean.parseBoolean(buff.readLine());
+            this.cadastrarMidia(new Jogo(caminho, titulo, descricao, genero, autores, ano, numeroJogadores, suporteRede));
 
-                this.cadastrarMidia(new Jogo(caminho, titulo, descricao, genero, autores, ano, numeroJogadores, suporteRede));
-
-                //Soltar uma linha
-                buff.readLine();
-            }
-        } catch (NumberFormatException e) {
-            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-
-        } catch (NullPointerException e) {
-            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-
-        } catch (IOException e) {
-            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
-            return false;
+            //Solta uma linha
+            buff.readLine();
         }
-
-        return true;
     }
 
     private boolean filtroPesquisa(String pesquisa, Midia midia) {

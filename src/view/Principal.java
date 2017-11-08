@@ -6,9 +6,14 @@
 package view;
 
 import colecao.ColecaoJogos;
-import gerais.LeitorArquivo;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -17,8 +22,9 @@ import javax.swing.JOptionPane;
  * <gustavosatheler@gmail.com>
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     private ColecaoJogos colecaoJogos;
+
     /**
      * Creates new form Principal
      */
@@ -101,12 +107,23 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_cJ_importarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cJ_importarActionPerformed
-        File arquivo = LeitorArquivo.carregarArquivo();
-        
-        if(colecaoJogos.importarMidia(arquivo)){
+        String arquivo = carregarArquivo();
+
+        try {
+            colecaoJogos.importarMidia(arquivo);
             JOptionPane.showMessageDialog(null, "Mídias inseridas com sucesso.");
-        } else {
-            JOptionPane.showMessageDialog(null, "Não foi possível inserir as mídias.");
+
+        } catch (NumberFormatException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
+
+        } catch (NullPointerException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
+
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
         }
     }//GEN-LAST:event_jButton_cJ_importarActionPerformed
 
@@ -147,6 +164,26 @@ public class Principal extends javax.swing.JFrame {
                 new Principal().setVisible(true);
             }
         });
+    }
+
+    public static String carregarArquivo() {
+
+        File arquivo;
+
+        JFileChooser chooser = new JFileChooser();
+
+        FileFilter filter = new FileNameExtensionFilter("Arquivo de texto", "txt");
+        chooser.addChoosableFileFilter(filter);
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        int retorno = chooser.showOpenDialog(null);
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
+            arquivo = chooser.getSelectedFile();
+            return arquivo.getPath();
+        }
+
+        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

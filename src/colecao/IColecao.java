@@ -6,6 +6,7 @@
 package colecao;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.util.List;
 import midia.Midia;
@@ -63,9 +64,10 @@ public interface IColecao {
     /**
      * Adiciona uma ou várias mídias a coleção a partir de um arquivo de texto.
      *
-     * @param arquivo
-     * @return True se as mídias forem incluídas com sucesso e False caso
-     * contrário.
+     * @param caminhoArquivo Caminho do arquivo
+     * @throws java.lang.NumberFormatException
+     * @throws java.lang.NullPointerException
+     * @throws java.io.IOException
      */
-    public boolean importarMidia(File arquivo);
+    public void importarMidia(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException;
 }

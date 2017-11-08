@@ -5,7 +5,6 @@
  */
 package colecao;
 
-import gerais.LeitorArquivo;
 import java.io.BufferedReader;
 import midia.Midia;
 import midia.Partitura;
@@ -16,9 +15,6 @@ import java.io.IOException;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import midia.Jogo;
 
 /**
  *
@@ -83,53 +79,35 @@ public class ColecaoPartituras implements IColecao {
     }
 
     @Override
-    public boolean importarMidia(File arquivo) {
-        FileReader reader;
-        BufferedReader buff;
+    public void importarMidia(String arquivo) throws NumberFormatException, NullPointerException, IOException {
+        FileReader reader = new FileReader(arquivo);
+        BufferedReader buff = new BufferedReader(reader);
 
-        try {
-            reader = new FileReader(arquivo);
-            buff = new BufferedReader(reader);
+        String caminho;
+        String titulo;
+        String descricao;
 
-            String caminho;
-            String titulo;
-            String descricao;
+        String genero;
+        String autores;
+        int ano;
+        String instrumentos;
 
-            String genero;
-            String autores;
-            int ano;
-            String instrumentos;
+        while ((caminho = buff.readLine()) != null) {
 
-            while ((caminho = buff.readLine()) != null) {
+            titulo = buff.readLine();
+            descricao = buff.readLine();
 
-                titulo = buff.readLine();
-                descricao = buff.readLine();
+            // Atributos da classe
+            genero = buff.readLine();
+            autores = buff.readLine();
+            ano = Integer.parseInt(buff.readLine());
+            instrumentos = buff.readLine();
 
-                // Atributos da classe
-                genero = buff.readLine();
-                autores = buff.readLine();
-                ano = Integer.parseInt(buff.readLine());
-                instrumentos = buff.readLine();
+            this.cadastrarMidia(new Partitura(caminho, titulo, descricao, genero, autores, ano, instrumentos));
 
-                this.cadastrarMidia(new Partitura(caminho, titulo, descricao, genero, autores, ano, instrumentos));
-
-                //Soltar uma linha
-                buff.readLine();
-            }
-        } catch (NumberFormatException e) {
-            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-
-        } catch (NullPointerException e) {
-            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-
-        } catch (IOException e) {
-            Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, e);
-            return false;
+            //Solta uma linha
+            buff.readLine();
         }
-
-        return true;
     }
 
     private boolean filtroPesquisa(String pesquisa, Midia midia) {
