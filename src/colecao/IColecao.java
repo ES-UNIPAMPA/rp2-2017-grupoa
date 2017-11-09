@@ -5,7 +5,9 @@
  */
 package colecao;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import java.util.List;
 
@@ -69,5 +71,16 @@ public interface IColecao {
      * @throws java.lang.NullPointerException
      * @throws java.io.IOException
      */
-    public void importarMidia(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException;
+    public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException;
+
+    /**
+     * Exporta a partir de uma lista de mídias de uma coleção para um arquivo de
+     * texto.
+     *
+     * @param nomeArquivo Caminho do arquivo
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.IOException
+     */
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, IOException ;
 }

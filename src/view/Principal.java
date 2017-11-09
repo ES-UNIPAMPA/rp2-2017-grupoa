@@ -6,14 +6,24 @@
 package view;
 
 import colecao.ColecaoJogos;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+
+import midia.Jogo;
+import midia.Midia;
 
 /**
  *
@@ -24,6 +34,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Principal extends javax.swing.JFrame {
 
     private ColecaoJogos colecaoJogos;
+    DefaultTableModel tabelaJogos;
 
     /**
      * Creates new form Principal
@@ -31,6 +42,8 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.colecaoJogos = new ColecaoJogos();
+        this.tabelaJogos = (DefaultTableModel) jTable_cj_tabela.getModel();
+        
     }
 
     /**
@@ -45,52 +58,98 @@ public class Principal extends javax.swing.JFrame {
         jTabbedPane_colecoes = new javax.swing.JTabbedPane();
         jPanel_colecaoJogos = new javax.swing.JPanel();
         jButton_cJ_importar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton_cJ_exportar = new javax.swing.JButton();
+        jLabel_cJ_titulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_cj_tabela = new javax.swing.JTable();
+        jSeparator1 = new javax.swing.JSeparator();
+        jButton_cadastrar = new javax.swing.JButton();
+        jButton_excluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca de mídias");
 
         jTabbedPane_colecoes.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        jButton_cJ_importar.setText("Importar mídias");
+        jButton_cJ_importar.setText("Importar arquivo");
         jButton_cJ_importar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_cJ_importarActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Ver mídias");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_cJ_exportar.setText("Exportar arquivo");
+        jButton_cJ_exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_cJ_exportarActionPerformed(evt);
             }
         });
+
+        jLabel_cJ_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_cJ_titulo.setText("Biblioteca de Jogos");
+
+        jTable_cj_tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Caminho", "Titulo", "Descrição", "Genero", "Autores", "Ano", "Número de Jogadores", "Suporte à rede"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable_cj_tabela);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jButton_cadastrar.setText("Cadastrar novo");
+
+        jButton_excluir.setText("Excluir selecionado");
 
         javax.swing.GroupLayout jPanel_colecaoJogosLayout = new javax.swing.GroupLayout(jPanel_colecaoJogos);
         jPanel_colecaoJogos.setLayout(jPanel_colecaoJogosLayout);
         jPanel_colecaoJogosLayout.setHorizontalGroup(
             jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_colecaoJogosLayout.createSequentialGroup()
-                .addContainerGap(833, Short.MAX_VALUE)
+            .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton_cJ_importar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
+                    .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
+                        .addComponent(jLabel_cJ_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_cadastrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_cJ_importar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton_cJ_exportar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_colecaoJogosLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton_excluir)))
                 .addContainerGap())
         );
         jPanel_colecaoJogosLayout.setVerticalGroup(
             jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton_cJ_importar)
+                .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
+                        .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton_cJ_importar)
+                            .addComponent(jButton_cJ_exportar))
+                        .addGap(0, 1, Short.MAX_VALUE))
+                    .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel_cJ_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton_cadastrar))
+                    .addComponent(jSeparator1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(433, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_excluir)
+                .addGap(7, 7, 7))
         );
 
         jTabbedPane_colecoes.addTab("Jogos", jPanel_colecaoJogos);
         jPanel_colecaoJogos.getAccessibleContext().setAccessibleName("Jogos");
-
-        jTabbedPane_colecoes.setSelectedIndex(-1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,12 +169,12 @@ public class Principal extends javax.swing.JFrame {
         String arquivo = carregarArquivo();
 
         try {
-            colecaoJogos.importarMidia(arquivo);
+            colecaoJogos.importarMidias(arquivo);
             JOptionPane.showMessageDialog(null, "Mídias inseridas com sucesso.");
 
         } catch (NumberFormatException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Dados incompatíveis com essa mídia.");
 
         } catch (NullPointerException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,11 +184,38 @@ public class Principal extends javax.swing.JFrame {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
         }
+
+        tabelaJogos.setRowCount(0);
+
+        for(Jogo jogo : colecaoJogos.exibirMidia()){
+            tabelaJogos.addRow(new Object[] {jogo.getCaminho(),
+                jogo.getTitulo(),
+                jogo.getDescricao(),
+                jogo.getGenero(),
+                jogo.getAutores(),
+                jogo.getAno(),
+                jogo.getNumeroJogadores(),
+                jogo.hasSuporteRede()});
+        }
     }//GEN-LAST:event_jButton_cJ_importarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, colecaoJogos.exibirMidia());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton_cJ_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cJ_exportarActionPerformed
+        String arquivo = carregarArquivo();
+        
+        try {
+            colecaoJogos.exportarMidias(arquivo);
+            JOptionPane.showMessageDialog(null, "Mídias exportadas com sucesso.");
+        } catch (FileNotFoundException ex){
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Arquivo não encontrado.");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Arquivo com codificação não suportada.");
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Não foi possivel exportar.");
+        }
+    }//GEN-LAST:event_jButton_cJ_exportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,9 +273,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton_cJ_exportar;
     private javax.swing.JButton jButton_cJ_importar;
+    private javax.swing.JButton jButton_cadastrar;
+    private javax.swing.JButton jButton_excluir;
+    private javax.swing.JLabel jLabel_cJ_titulo;
     private javax.swing.JPanel jPanel_colecaoJogos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane_colecoes;
+    private javax.swing.JTable jTable_cj_tabela;
     // End of variables declaration//GEN-END:variables
 }

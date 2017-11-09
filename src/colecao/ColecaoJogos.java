@@ -11,7 +11,12 @@ import midia.Jogo;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -63,7 +68,7 @@ public class ColecaoJogos implements IColecao {
     }
 
     @Override
-    public List consultarMidia(String pesquisa) {
+    public List<Jogo> consultarMidia(String pesquisa) {
         List<Jogo> lista = new ArrayList();
         for (Jogo jogo : listaDeJogos) {
             if (this.filtroPesquisa(pesquisa, jogo)) {
@@ -74,14 +79,14 @@ public class ColecaoJogos implements IColecao {
     }
 
     @Override
-    public List exibirMidia() {
+    public List<Jogo> exibirMidia() {
         return this.listaDeJogos;
     }
 
     @Override
-    public void importarMidia(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
+    public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
         File arquivo = new File(caminhoArquivo);
-        
+
         FileReader reader = new FileReader(arquivo);
         BufferedReader buff = new BufferedReader(reader);
 
@@ -114,10 +119,36 @@ public class ColecaoJogos implements IColecao {
         }
     }
 
+    @Override
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+        FileOutputStream outFile;
+        BufferedWriter buff;
+
+        outFile = new FileOutputStream(new File(nomeArquivo));
+        buff = new BufferedWriter(new OutputStreamWriter(outFile, "UTF-8"));
+
+        for (Jogo jogo : listaDeJogos) {
+
+            buff.write(jogo.getCaminho() + "\n");
+            buff.write(jogo.getTitulo() + "\n");
+            buff.write(jogo.getDescricao() + "\n");
+            
+            buff.write(jogo.getGenero() + "\n");
+            buff.write(jogo.getAutores() + "\n");
+            buff.write(jogo.getAno() + "\n");
+            buff.write(jogo.getNumeroJogadores() + "\n");
+            buff.write(jogo.hasSuporteRede() + "\n");
+            
+            buff.write("\n");
+        }
+
+        buff.close();
+        outFile.close();
+    }
+
     private boolean filtroPesquisa(String pesquisa, Midia midia) {
         return (midia.getCaminho().toUpperCase()).contains(pesquisa.toUpperCase())
                 || (midia.getTitulo().toUpperCase()).contains(pesquisa.toUpperCase())
                 || (midia.getDescricao().toUpperCase()).contains(pesquisa.toUpperCase());
     }
-
 }
