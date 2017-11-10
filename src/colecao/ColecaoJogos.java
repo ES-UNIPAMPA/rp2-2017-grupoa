@@ -5,7 +5,6 @@
  */
 package colecao;
 
-import midia.Midia;
 import midia.Jogo;
 
 import java.io.File;
@@ -18,69 +17,15 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
-import java.util.List;
-import java.util.ArrayList;
-
 /**
  *
  * @author Gustavo Bittecourt Satheler
  * <gustavo.satheler@alunos.unipampa.edu.br>
  * <gustavosatheler@gmail.com>
  */
-public class ColecaoJogos implements IColecao {
-
-    private List<Jogo> listaDeJogos;
+public class ColecaoJogos extends Colecao {
 
     public ColecaoJogos() {
-        this.listaDeJogos = new ArrayList();
-    }
-
-    @Override
-    public boolean cadastrarMidia(Midia midia) {
-        if (this.listaDeJogos.add((Jogo) midia)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean removerMidia(String pesquisa) {
-        for (Jogo jogo : listaDeJogos) {
-            if (this.filtroPesquisa(pesquisa, jogo)) {
-                if (this.listaDeJogos.remove(jogo)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean editarMidia(String pesquisa, Midia midia) {
-        for (Jogo jogo : listaDeJogos) {
-            if (this.filtroPesquisa(pesquisa, jogo)) {
-                if (this.listaDeJogos.remove(jogo) && this.cadastrarMidia(midia)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public List<Jogo> consultarMidia(String pesquisa) {
-        List<Jogo> lista = new ArrayList();
-        for (Jogo jogo : listaDeJogos) {
-            if (this.filtroPesquisa(pesquisa, jogo)) {
-                lista.add(jogo);
-            }
-        }
-        return lista;
-    }
-
-    @Override
-    public List<Jogo> exibirMidia() {
-        return this.listaDeJogos;
     }
 
     @Override
@@ -120,35 +65,39 @@ public class ColecaoJogos implements IColecao {
     }
 
     @Override
-    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, IOException {
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
         FileOutputStream outFile;
         BufferedWriter buff;
 
         outFile = new FileOutputStream(new File(nomeArquivo));
         buff = new BufferedWriter(new OutputStreamWriter(outFile, "UTF-8"));
 
-        for (Jogo jogo : listaDeJogos) {
+        for (Object midia : listaDeMidias) {
+
+            if (midia == null) {
+                throw new NullPointerException("Está midia está vazia.");
+            }
+
+            if (!(midia instanceof Jogo)) {
+                throw new ClassCastException("Classe inválida");
+            }
+            
+            final Jogo jogo = (Jogo) midia;
 
             buff.write(jogo.getCaminho() + "\n");
             buff.write(jogo.getTitulo() + "\n");
             buff.write(jogo.getDescricao() + "\n");
-            
+
             buff.write(jogo.getGenero() + "\n");
             buff.write(jogo.getAutores() + "\n");
             buff.write(jogo.getAno() + "\n");
             buff.write(jogo.getNumeroJogadores() + "\n");
             buff.write(jogo.hasSuporteRede() + "\n");
-            
+
             buff.write("\n");
         }
 
         buff.close();
         outFile.close();
-    }
-
-    private boolean filtroPesquisa(String pesquisa, Midia midia) {
-        return (midia.getCaminho().toUpperCase()).contains(pesquisa.toUpperCase())
-                || (midia.getTitulo().toUpperCase()).contains(pesquisa.toUpperCase())
-                || (midia.getDescricao().toUpperCase()).contains(pesquisa.toUpperCase());
     }
 }

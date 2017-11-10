@@ -5,16 +5,18 @@
  */
 package colecao;
 
-import java.io.BufferedReader;
-import midia.Midia;
 import midia.Partitura;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 
-import java.util.List;
-import java.util.ArrayList;
 
 /**
  *
@@ -22,66 +24,12 @@ import java.util.ArrayList;
  * <gustavo.satheler@alunos.unipampa.edu.br>
  * <gustavosatheler@gmail.com>
  */
-public class ColecaoPartituras implements IColecao {
-
-    private List<Partitura> listaDePartituras;
-
-    public ColecaoPartituras() {
-        this.listaDePartituras = new ArrayList();
-    }
+public class ColecaoPartituras extends Colecao {
 
     @Override
-    public boolean cadastrarMidia(Midia midia) {
-        if (this.listaDePartituras.add((Partitura) midia)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean removerMidia(String pesquisa) {
-        for (Partitura partitura : listaDePartituras) {
-            if (this.filtroPesquisa(pesquisa, partitura)) {
-                if (this.listaDePartituras.remove(partitura)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean editarMidia(String pesquisa, Midia midia) {
-        for (Partitura partitura : listaDePartituras) {
-            if (this.filtroPesquisa(pesquisa, partitura)) {
-                if (this.listaDePartituras.remove(partitura) && this.cadastrarMidia(midia)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public List consultarMidia(String pesquisa) {
-        List<Partitura> lista = new ArrayList();
-        for (Partitura partitura : listaDePartituras) {
-            if (this.filtroPesquisa(pesquisa, partitura)) {
-                lista.add(partitura);
-            }
-        }
-        return lista;
-    }
-
-    @Override
-    public List exibirMidia() {
-        return this.listaDePartituras;
-    }
-
-    @Override
-    public void importarMidia(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
+    public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
         File arquivo = new File(caminhoArquivo);
-        
+
         FileReader reader = new FileReader(arquivo);
         BufferedReader buff = new BufferedReader(reader);
 
@@ -112,9 +60,38 @@ public class ColecaoPartituras implements IColecao {
         }
     }
 
-    private boolean filtroPesquisa(String pesquisa, Midia midia) {
-        return (midia.getCaminho().toUpperCase()).contains(pesquisa.toUpperCase())
-                || (midia.getTitulo().toUpperCase()).contains(pesquisa.toUpperCase())
-                || (midia.getDescricao().toUpperCase()).contains(pesquisa.toUpperCase());
+    @Override
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
+        FileOutputStream outFile;
+        BufferedWriter buff;
+
+        outFile = new FileOutputStream(new File(nomeArquivo));
+        buff = new BufferedWriter(new OutputStreamWriter(outFile, "UTF-8"));
+
+        for (Object midia : listaDeMidias) {
+            if (midia == null) {
+                throw new NullPointerException("Está midia está vazia.");
+            }
+
+            if (!(midia instanceof Partitura)) {
+                throw new ClassCastException("Classe inválida");
+            }
+
+            final Partitura partitura = (Partitura) midia;
+
+            buff.write(partitura.getCaminho() + "\n");
+            buff.write(partitura.getTitulo() + "\n");
+            buff.write(partitura.getDescricao() + "\n");
+
+            buff.write(partitura.getGenero() + "\n");
+            buff.write(partitura.getAutores() + "\n");
+            buff.write(partitura.getAno() + "\n");
+            buff.write(partitura.getInstrumentos() + "\n");
+
+            buff.write("\n");
+        }
+
+        buff.close();
+        outFile.close();
     }
 }

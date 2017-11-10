@@ -43,7 +43,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.colecaoJogos = new ColecaoJogos();
         this.tabelaJogos = (DefaultTableModel) jTable_cj_tabela.getModel();
-        
+
     }
 
     /**
@@ -87,6 +87,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel_cJ_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel_cJ_titulo.setText("Biblioteca de Jogos");
+
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jTable_cj_tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,30 +189,36 @@ public class Principal extends javax.swing.JFrame {
 
         tabelaJogos.setRowCount(0);
 
-        for(Jogo jogo : colecaoJogos.exibirMidia()){
-            tabelaJogos.addRow(new Object[] {jogo.getCaminho(),
+        for (Object midia : colecaoJogos.exibirMidia()) {
+            Jogo jogo = (Jogo) midia;
+            tabelaJogos.addRow(new Object[]{
+                jogo.getCaminho(),
                 jogo.getTitulo(),
                 jogo.getDescricao(),
                 jogo.getGenero(),
                 jogo.getAutores(),
                 jogo.getAno(),
                 jogo.getNumeroJogadores(),
-                jogo.hasSuporteRede()});
+                jogo.hasSuporteRede()
+            });
         }
     }//GEN-LAST:event_jButton_cJ_importarActionPerformed
 
     private void jButton_cJ_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cJ_exportarActionPerformed
         String arquivo = carregarArquivo();
-        
+
         try {
             colecaoJogos.exportarMidias(arquivo);
             JOptionPane.showMessageDialog(null, "Mídias exportadas com sucesso.");
-        } catch (FileNotFoundException ex){
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Arquivo não encontrado.");
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Arquivo com codificação não suportada.");
+        } catch (NullPointerException | ClassCastException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Não foi possivel exportar.");

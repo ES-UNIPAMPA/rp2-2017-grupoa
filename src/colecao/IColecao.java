@@ -82,5 +82,5 @@ public interface IColecao {
      * @throws java.io.UnsupportedEncodingException
      * @throws java.io.IOException
      */
-    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, IOException ;
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException;
 }
