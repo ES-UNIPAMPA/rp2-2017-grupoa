@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gustavo Bittecourt Satheler
@@ -26,6 +28,7 @@ import java.io.UnsupportedEncodingException;
 public class ColecaoJogos extends Colecao {
 
     public ColecaoJogos() {
+        super(new ArrayList<Jogo>());
     }
 
     @Override

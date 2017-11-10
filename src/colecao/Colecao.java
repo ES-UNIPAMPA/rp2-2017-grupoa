@@ -21,8 +21,8 @@ public abstract class Colecao implements IColecao {
 
     protected List listaDeMidias;
 
-    public Colecao() {
-        this.listaDeMidias = new ArrayList();
+    public Colecao(List listaDeMidias) {
+        this.listaDeMidias = listaDeMidias;
     }
 
     @Override

@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -26,6 +28,10 @@ import java.io.UnsupportedEncodingException;
  */
 public class ColecaoPartituras extends Colecao {
 
+    public ColecaoPartituras() {
+        super(new ArrayList<Partitura>());
+    }
+ 
     @Override
     public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
         File arquivo = new File(caminhoArquivo);
