@@ -5,6 +5,9 @@
  */
 package colecao;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import midia.Midia;
@@ -16,7 +19,7 @@ import midia.Podcast;
  * <leopedroso45@gmail.com>
  *
  */
-public class ColecaoPodcast implements IColecao {
+public class ColecaoPodcast extends Colecao {
 
     private List<Podcast> listaDePodcast;
 
@@ -24,7 +27,7 @@ public class ColecaoPodcast implements IColecao {
      * Apenas inicializada um array vazio listaDePodcast
      */
     public ColecaoPodcast() {
-        listaDePodcast = new ArrayList();
+        super(new ArrayList<Podcast>());
     }
 
     /**
@@ -107,6 +110,16 @@ public class ColecaoPodcast implements IColecao {
     @Override
     public List exibirMidia() {
         return this.listaDePodcast;
+    }
+
+    @Override
+    public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
