@@ -112,6 +112,7 @@ public class Musica extends Midia {
     public void setAutores(List<String> autores) {
         this.autores = autores;
     }
+
     /**
      *
      * Retorna o inteprete atual
@@ -176,5 +177,13 @@ public class Musica extends Midia {
      */
     public void setAno(int ano) {
         this.ano = ano;
+    }
+
+    public void adicionarAutor(String autor) {
+        this.autores.add(autor);
+    }
+    
+    public void adicionarInterprete (String interprete) {
+        this.interpretes.add(interprete);
     }
 }
