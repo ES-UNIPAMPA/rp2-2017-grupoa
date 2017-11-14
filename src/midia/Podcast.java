@@ -5,6 +5,9 @@
  */
 package midia;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Leonardo Severo Pedroso
@@ -14,7 +17,7 @@ package midia;
 public class Podcast extends Midia {
 
     private String idioma;
-    private String autores;
+    private List<String> autores;
     private int ano;
 
     /**
@@ -29,11 +32,13 @@ public class Podcast extends Midia {
      * @param ano
      *
      */
-    public Podcast(String caminho, String nome, String descricao, String idioma, String autores, int ano) {
+    public Podcast(String caminho, String nome, String descricao, String idioma, String autor, int ano) {
         super(caminho, nome, descricao);
         this.idioma = idioma;
-        this.autores = autores;
+        this.autores = new ArrayList();
         this.ano = ano;
+
+        autores.add(autor);
     }
 
     /**
@@ -65,7 +70,7 @@ public class Podcast extends Midia {
      * @return autores
      *
      */
-    public String getAutores() {
+    public List<String> getAutores() {
         return autores;
     }
 
@@ -76,7 +81,7 @@ public class Podcast extends Midia {
      * @param autores
      *
      */
-    public void setAutores(String autores) {
+    public void setAutores(List<String> autores) {
         this.autores = autores;
     }
 
@@ -100,6 +105,10 @@ public class Podcast extends Midia {
      */
     public void setAno(int ano) {
         this.ano = ano;
+    }
+    
+    public void adicionarAutor(String autor){
+        this.autores.add(autor);
     }
 
 }

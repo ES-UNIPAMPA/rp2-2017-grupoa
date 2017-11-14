@@ -23,9 +23,6 @@ public class ColecaoMusica extends Colecao {
 
     private List<Musica> listaDeMusica;
 
-    /**
-     * Inicializa o array listaDeMusica.
-     */
     public ColecaoMusica(List<Midia> listaDeMidia) {
         super(listaDeMidia);
     }

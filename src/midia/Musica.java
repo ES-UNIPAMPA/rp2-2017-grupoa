@@ -5,6 +5,8 @@
  */
 package midia;
 
+import java.util.List;
+
 /**
  *
  * @author Leonardo Severo Pedroso
@@ -15,8 +17,8 @@ public class Musica extends Midia {
 
     private String idioma;
     private String genero;
-    private String autores;
-    private String interprete;
+    private List<String> autores;
+    private List<String> interpretes;
     private int duracao;
     private int ano;
 
@@ -35,12 +37,12 @@ public class Musica extends Midia {
      * @param ano
      *
      */
-    public Musica(String caminho, String nome, String descricao, String idioma, String genero, String autores, String interprete, int duracao, int ano) {
+    public Musica(String caminho, String nome, String descricao, String idioma, String genero, String autor, String interprete, int duracao, int ano) {
         super(caminho, nome, descricao);
         this.idioma = idioma;
         this.genero = genero;
-        this.autores = autores;
-        this.interprete = interprete;
+        this.autores.add(autor);
+        this.interpretes.add(interprete);
         this.duracao = duracao;
         this.ano = ano;
     }
@@ -96,8 +98,8 @@ public class Musica extends Midia {
      * @return autores
      *
      */
-    public String getAutores() {
-        return this.autores;
+    public List<String> getAutores() {
+        return autores;
     }
 
     /**
@@ -107,10 +109,9 @@ public class Musica extends Midia {
      * @param autores
      *
      */
-    public void setAutores(String autores) {
+    public void setAutores(List<String> autores) {
         this.autores = autores;
     }
-
     /**
      *
      * Retorna o inteprete atual
@@ -118,8 +119,8 @@ public class Musica extends Midia {
      * @return interprete
      *
      */
-    public String getInterprete() {
-        return this.interprete;
+    public List<String> getInterpretes() {
+        return interpretes;
     }
 
     /**
@@ -129,8 +130,8 @@ public class Musica extends Midia {
      * @param interprete
      *
      */
-    public void setInterprete(String interprete) {
-        this.interprete = interprete;
+    public void setInterpretes(List<String> interpretes) {
+        this.interpretes = interpretes;
     }
 
     /**
