@@ -5,10 +5,18 @@
  */
 package colecao;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import midia.Midia;
 
 import java.util.ArrayList;
 import java.util.List;
+import midia.Jogo;
 
 /**
  *
@@ -19,10 +27,10 @@ import java.util.List;
  */
 public abstract class Colecao implements IColecao {
 
-    protected List listaDeMidias;
+    protected List<Midia> listaDeMidias;
 
-    public Colecao(List listaDeMidias) {
-        this.listaDeMidias = listaDeMidias;
+    public Colecao(List<Midia> listaDeMidias) {
+        this.listaDeMidias = new ArrayList(listaDeMidias);
     }
 
     @Override
@@ -33,11 +41,11 @@ public abstract class Colecao implements IColecao {
     @Override
     public boolean removerMidia(String pesquisa) {
         for (Object midia : listaDeMidias) {
-            if (this.filtroPesquisa(pesquisa, (Midia) midia)) {
-                if (this.listaDeMidias.remove(midia)) {
-                    return true;
-                }
-            }
+//            if (this.filtroPesquisa(pesquisa, (Midia) midia)) {
+//                if (this.listaDeMidias.remove(midia)) {
+//                    return true;
+//                }
+//            }
         }
         return false;
     }
@@ -45,11 +53,11 @@ public abstract class Colecao implements IColecao {
     @Override
     public boolean editarMidia(String pesquisa, Midia midia) {
         for (Object midiaTemp : listaDeMidias) {
-            if (this.filtroPesquisa(pesquisa, (Midia) midia)) {
-                if (this.listaDeMidias.remove(midiaTemp) && this.cadastrarMidia(midia)) {
-                    return true;
-                }
-            }
+//            if (this.filtroPesquisa(pesquisa, (Midia) midia)) {
+//                if (this.listaDeMidias.remove(midiaTemp) && this.cadastrarMidia(midia)) {
+//                    return true;
+//                }
+//            }
         }
         return false;
     }
@@ -58,9 +66,9 @@ public abstract class Colecao implements IColecao {
     public List consultarMidia(String pesquisa) {
         List<Midia> lista = new ArrayList();
         for (Object midia : listaDeMidias) {
-            if (this.filtroPesquisa(pesquisa,(Midia) midia)) {
-                lista.add((Midia) midia);
-            }
+//            if (this.filtroPesquisa(pesquisa,(Midia) midia)) {
+//                lista.add((Midia) midia);
+//            }
         }
         return lista;
     }
@@ -70,9 +78,22 @@ public abstract class Colecao implements IColecao {
         return this.listaDeMidias;
     }
 
-    private boolean filtroPesquisa(String pesquisa, Midia midia) {
-        return (midia.getCaminho().toUpperCase()).contains(pesquisa.toUpperCase())
-                || (midia.getTitulo().toUpperCase()).contains(pesquisa.toUpperCase())
-                || (midia.getDescricao().toUpperCase()).contains(pesquisa.toUpperCase());
+    @Override
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
+        FileOutputStream outFile;
+        BufferedWriter buff;
+
+        outFile = new FileOutputStream(new File(nomeArquivo));
+        buff = new BufferedWriter(new OutputStreamWriter(outFile, "UTF-8"));
+
+        for (Midia midia : listaDeMidias) {
+
+            buff.write(midia.toString());
+            buff.write("\n");
+        }
+
+        buff.close();
+        outFile.close();
     }
+
 }

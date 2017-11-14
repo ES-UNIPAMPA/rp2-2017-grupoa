@@ -10,14 +10,11 @@ import midia.Jogo;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 
 import java.util.ArrayList;
+import java.util.List;
+import midia.Midia;
 
 /**
  *
@@ -27,8 +24,8 @@ import java.util.ArrayList;
  */
 public class ColecaoJogos extends Colecao {
 
-    public ColecaoJogos() {
-        super(new ArrayList<Jogo>());
+    public ColecaoJogos(List<Midia> listaDeMidia) {
+        super(listaDeMidia);
     }
 
     @Override
@@ -65,42 +62,5 @@ public class ColecaoJogos extends Colecao {
             //Solta uma linha
             buff.readLine();
         }
-    }
-
-    @Override
-    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
-        FileOutputStream outFile;
-        BufferedWriter buff;
-
-        outFile = new FileOutputStream(new File(nomeArquivo));
-        buff = new BufferedWriter(new OutputStreamWriter(outFile, "UTF-8"));
-
-        for (Object midia : listaDeMidias) {
-
-            if (midia == null) {
-                throw new NullPointerException("Está midia está vazia.");
-            }
-
-            if (!(midia instanceof Jogo)) {
-                throw new ClassCastException("Classe inválida");
-            }
-            
-            final Jogo jogo = (Jogo) midia;
-
-            buff.write(jogo.getCaminho() + "\n");
-            buff.write(jogo.getTitulo() + "\n");
-            buff.write(jogo.getDescricao() + "\n");
-
-            buff.write(jogo.getGenero() + "\n");
-            buff.write(jogo.getAutores() + "\n");
-            buff.write(jogo.getAno() + "\n");
-            buff.write(jogo.getNumeroJogadores() + "\n");
-            buff.write(jogo.hasSuporteRede() + "\n");
-
-            buff.write("\n");
-        }
-
-        buff.close();
-        outFile.close();
     }
 }

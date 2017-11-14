@@ -9,9 +9,10 @@ package midia;
  *
  * @author Leonardo Severo Pedroso
  * <leopedroso45@gmail.com>
- * 
+ *
  */
 public abstract class Midia {
+
     private String caminho;
     private String titulo;
     private String descricao;
@@ -45,4 +46,14 @@ public abstract class Midia {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public boolean contains(String pesquisa) {
+        return this.caminho.equalsIgnoreCase(pesquisa) || this.titulo.equalsIgnoreCase(pesquisa);
+    }
+
+    @Override
+    public String toString() {
+        return this.caminho + "\n" + this.titulo + "\n" + this.descricao + "\n";
+    }
+
 }

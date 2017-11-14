@@ -90,7 +90,7 @@ public class Jogo extends Midia {
     public int getNumeroJogadores() {
         return this.numeroJogadores;
     }
-    
+
     /**
      * Altera o atributo numeroJogadores.
      *
@@ -99,7 +99,7 @@ public class Jogo extends Midia {
     public void setNumeroJogadores(int numeroJogadores) {
         this.numeroJogadores = numeroJogadores;
     }
-    
+
     /**
      * Captura o atributo suporteRede.
      *
@@ -108,7 +108,7 @@ public class Jogo extends Midia {
     public boolean hasSuporteRede() {
         return this.suporteRede;
     }
-    
+
     /**
      * Altera o atributo numeroJogadores.
      *
@@ -120,15 +120,6 @@ public class Jogo extends Midia {
 
     @Override
     public String toString() {
-        return "\nJogo {" 
-                + "caminho = " + getCaminho()
-                + ",\n       nome = " + getTitulo() 
-                + ",\n       descricao = " + getDescricao() 
-                + ",\n       genero = " + genero 
-                + ",\n       autores = " + autores 
-                + ",\n       ano = " + ano 
-                + ",\n       numeroJogadores = " + numeroJogadores 
-                + ",\n       suporteRede = " + suporteRede 
-                + "\n}";
+        return super.toString() + this.genero + "\n" + this.autores + "\n" + this.ano + "\n" + this.numeroJogadores + "\n" + this.suporteRede + "\n";
     }
 }
