@@ -102,14 +102,6 @@ public class Partitura extends Midia {
 
     @Override
     public String toString() {
-        return "Partitura {"
-                + "caminho = " + getCaminho()
-                + ",\n       nome = " + getTitulo()
-                + ",\n       descricao = " + getDescricao()
-                + ",\n       genero = " + genero
-                + ",\n       autores = " + autores
-                + ",\n       ano = " + ano
-                + ",\n       instrumentos = " + instrumentos
-                + "\n   }";
+        return super.toString() + this.genero + "\n" + this.autores + "\n" + this.ano + "\n" + this.instrumentos + "\n";
     }
 }

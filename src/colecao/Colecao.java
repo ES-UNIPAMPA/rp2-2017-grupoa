@@ -5,6 +5,8 @@
  */
 package colecao;
 
+import midia.Midia;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,11 +14,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import midia.Midia;
 
 import java.util.ArrayList;
 import java.util.List;
-import midia.Jogo;
 
 /**
  *
@@ -40,46 +40,46 @@ public abstract class Colecao implements IColecao {
 
     @Override
     public boolean removerMidia(String pesquisa) {
-        for (Object midia : listaDeMidias) {
-//            if (this.filtroPesquisa(pesquisa, (Midia) midia)) {
-//                if (this.listaDeMidias.remove(midia)) {
-//                    return true;
-//                }
-//            }
+        for (Midia midia : listaDeMidias) {
+            if (midia.contains(pesquisa)) {
+                if (this.listaDeMidias.remove(midia)) {
+                    return true;
+                }
+            }
         }
         return false;
     }
 
     @Override
     public boolean editarMidia(String pesquisa, Midia midia) {
-        for (Object midiaTemp : listaDeMidias) {
-//            if (this.filtroPesquisa(pesquisa, (Midia) midia)) {
-//                if (this.listaDeMidias.remove(midiaTemp) && this.cadastrarMidia(midia)) {
-//                    return true;
-//                }
-//            }
+        for (int i = 0; i < listaDeMidias.size(); i++) {
+            Midia midiaTemp = listaDeMidias.get(i);
+            if (midiaTemp.contains(pesquisa)) {
+                this.listaDeMidias.set(i, midia);
+                return true;
+            }
         }
         return false;
     }
 
     @Override
-    public List consultarMidia(String pesquisa) {
+        public List consultarMidia(String pesquisa) {
         List<Midia> lista = new ArrayList();
-        for (Object midia : listaDeMidias) {
-//            if (this.filtroPesquisa(pesquisa,(Midia) midia)) {
-//                lista.add((Midia) midia);
-//            }
+        for (Midia midia : listaDeMidias) {
+            if (midia.contains(pesquisa)) {
+                lista.add((Midia) midia);
+            }
         }
         return lista;
     }
 
     @Override
-    public List exibirMidia() {
+        public List exibirMidia() {
         return this.listaDeMidias;
     }
 
     @Override
-    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
+        public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
         FileOutputStream outFile;
         BufferedWriter buff;
 
@@ -95,5 +95,4 @@ public abstract class Colecao implements IColecao {
         buff.close();
         outFile.close();
     }
-
 }

@@ -82,5 +82,11 @@ public interface IColecao {
      * @throws java.io.UnsupportedEncodingException
      * @throws java.io.IOException
      */
-    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException;
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, IOException;
+
+    /**
+     * Ordena o a lista de coleção.
+     * 
+     */
+    public void ordenar();
 }

@@ -5,6 +5,10 @@
  */
 package midia;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  *
  * @author Gustavo Bittecourt Satheler
@@ -14,15 +18,15 @@ package midia;
 public class Jogo extends Midia {
 
     private String genero;
-    private String autores;
+    private List<String> autores;
     private int ano;
     private int numeroJogadores;
     private boolean suporteRede;
 
-    public Jogo(String caminho, String titulo, String descricao, String genero, String autores, int ano, int numeroJogadores, boolean suporteRede) {
+    public Jogo(String caminho, String titulo, String descricao, String genero, List<String> autores, int ano, int numeroJogadores, boolean suporteRede) {
         super(caminho, titulo, descricao);
         this.genero = genero;
-        this.autores = autores;
+        this.autores = new ArrayList(autores);
         this.ano = ano;
         this.numeroJogadores = numeroJogadores;
         this.suporteRede = suporteRede;
@@ -51,17 +55,18 @@ public class Jogo extends Midia {
      *
      * @return String
      */
-    public String getAutores() {
+    public List<String> getAutores() {
         return this.autores;
     }
 
     /**
      * Altera o atributo autores.
      *
-     * @param autores String
+     * @param autor Nome do autor para ser adicionado a lista.
+     * @return True se a mídia for incluída com sucesso e False caso contrário. 
      */
-    public void setAutores(String autores) {
-        this.autores = autores;
+    public boolean addAutor(String autor) {
+        return this.autores.add(autor);
     }
 
     /**
@@ -120,6 +125,6 @@ public class Jogo extends Midia {
 
     @Override
     public String toString() {
-        return super.toString() + this.genero + "\n" + this.autores + "\n" + this.ano + "\n" + this.numeroJogadores + "\n" + this.suporteRede + "\n";
+        return super.toString() + this.genero + "\n" + super.listToString(this.autores) + "\n" + this.ano + "\n" + this.numeroJogadores + "\n" + this.suporteRede + "\n";
     }
 }

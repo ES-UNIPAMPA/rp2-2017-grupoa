@@ -5,6 +5,8 @@
  */
 package midia;
 
+import java.util.List;
+
 /**
  *
  * @author Leonardo Severo Pedroso
@@ -48,12 +50,19 @@ public abstract class Midia {
     }
 
     public boolean contains(String pesquisa) {
-        return this.caminho.equalsIgnoreCase(pesquisa) || this.titulo.equalsIgnoreCase(pesquisa);
+        return (this.caminho.toUpperCase()).contains(pesquisa.toUpperCase()) || (this.titulo.toUpperCase()).contains(pesquisa.toUpperCase());
     }
 
     @Override
     public String toString() {
         return this.caminho + "\n" + this.titulo + "\n" + this.descricao + "\n";
     }
-
+    
+    public String listToString(List<String> lista) {
+        String temp = "";
+        for(String string : lista){
+            temp += string + ";";
+        }
+        return temp;
+    }
 }

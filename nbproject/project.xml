@@ -14,12 +14,14 @@
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>Adiciona</word>
             <word>adicionadas</word>
+            <word>adicionado</word>
             <word>Altera</word>
             <word>alterada</word>
             <word>ano</word>
             <word>arquivo</word>
             <word>atributo</word>
             <word>atualizada</word>
+            <word>autor</word>
             <word>autores</word>
             <word>Caminho</word>
             <word>Captura</word>
@@ -49,6 +51,7 @@
             <word>Midia</word>
             <word>mídia</word>
             <word>mídias</word>
+            <word>Ordena</word>
             <word>ou</word>
             <word>palavra</word>
             <word>partir</word>

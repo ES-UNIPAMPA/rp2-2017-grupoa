@@ -8,17 +8,11 @@ package colecao;
 import midia.Partitura;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-
-import java.util.ArrayList;
-
+import java.util.List;
+import midia.Midia;
 
 /**
  *
@@ -28,10 +22,10 @@ import java.util.ArrayList;
  */
 public class ColecaoPartituras extends Colecao {
 
-    public ColecaoPartituras() {
-        super(new ArrayList<Partitura>());
+    public ColecaoPartituras(List<Midia> listaDeMidia) {
+        super(listaDeMidia);
     }
- 
+
     @Override
     public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
         File arquivo = new File(caminhoArquivo);
@@ -59,7 +53,7 @@ public class ColecaoPartituras extends Colecao {
             ano = Integer.parseInt(buff.readLine());
             instrumentos = buff.readLine();
 
-            this.cadastrarMidia(new Partitura(caminho, titulo, descricao, genero, autores, ano, instrumentos));
+            super.cadastrarMidia(new Partitura(caminho, titulo, descricao, genero, autores, ano, instrumentos));
 
             //Solta uma linha
             buff.readLine();
@@ -67,37 +61,43 @@ public class ColecaoPartituras extends Colecao {
     }
 
     @Override
-    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
-        FileOutputStream outFile;
-        BufferedWriter buff;
+    public void ordenar() {
+        List<Midia> lista = super.listaDeMidias;
+        int n = lista.size();
 
-        outFile = new FileOutputStream(new File(nomeArquivo));
-        buff = new BufferedWriter(new OutputStreamWriter(outFile, "UTF-8"));
-
-        for (Object midia : listaDeMidias) {
-            if (midia == null) {
-                throw new NullPointerException("Está midia está vazia.");
-            }
-
-            if (!(midia instanceof Partitura)) {
-                throw new ClassCastException("Classe inválida");
-            }
-
-            final Partitura partitura = (Partitura) midia;
-
-            buff.write(partitura.getCaminho() + "\n");
-            buff.write(partitura.getTitulo() + "\n");
-            buff.write(partitura.getDescricao() + "\n");
-
-            buff.write(partitura.getGenero() + "\n");
-            buff.write(partitura.getAutores() + "\n");
-            buff.write(partitura.getAno() + "\n");
-            buff.write(partitura.getInstrumentos() + "\n");
-
-            buff.write("\n");
+        // Chamada recursiva (Reorganiza a lista)
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapsort(lista, n, i);
         }
 
-        buff.close();
-        outFile.close();
+        // Um por um extrai um elemento
+        for (int i = n - 1; i >= 0; i--) {
+            // Faz a troca
+            lista.set(i, lista.set(0, lista.get(i)));
+
+            // Chamada recursiva
+            heapsort(lista, i, 0);
+        }
+    }
+
+    private void heapsort(List<Midia> lista, int n, int i) {
+        int largest = i;
+        int l = 2 * i + 1;  // Esquerda = 2*i + 1
+        int r = 2 * i + 2;  // Direita = 2*i + 2
+
+        if (l < n && (lista.get(l).getTitulo()).compareToIgnoreCase(lista.get(largest).getTitulo()) > 0) {
+            largest = l;
+        }
+
+        if (r < n && (lista.get(r).getTitulo()).compareToIgnoreCase(lista.get(largest).getTitulo()) > 0) {
+            largest = r;
+        }
+
+        if (largest != i) {
+            lista.set(largest, lista.set(i, lista.get(largest)));
+
+            // Recursividade para diminuir a arvoré
+            heapsort(lista, n, largest);
+        }
     }
 }

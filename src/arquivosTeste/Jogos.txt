@@ -2,7 +2,7 @@ C:\Riot Games\League of Legends\LeagueClient.exe
 League of Legends
 É um jogo eletrônico do gênero multiplayer online battle arena, desenvolvido e publicado pela Riot Games para Microsoft Windows e Mac OS X.
 Multiplayer online battle arena
-Riot Games
+Brandon Beck;Marc Merril;
 2009
 100000000
 true
@@ -11,26 +11,7 @@ C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\cs
 Counter-Strike: Global Offensive
 É um jogo, que o surprise é o melhor, online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.
 First Person Shooter
-Valve Corporation
+Valve Corporation;
 2012
 100000
 true
-
-C:\Riot Games\League of Legends\LeagueClient.exe
-League of Legends
-É um jogo eletrônico do gênero multiplayer online battle arena, desenvolvido e publicado pela Riot Games para Microsoft Windows e Mac OS X.
-Multiplayer online battle arena
-Riot Games
-2009
-100000000
-true
-
-C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe
-Counter-Strike: Global Offensive
-É um jogo, que o surprise é o melhor, online desenvolvido pela Valve Corporation e pela Hidden Path Entertainment, sendo uma sequência de Counter-Strike: Source. É o quarto título principal da franquia.
-First Person Shooter
-Valve Corporation
-2012
-100000
-true
-
