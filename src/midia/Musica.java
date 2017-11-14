@@ -5,6 +5,7 @@
  */
 package midia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +42,9 @@ public class Musica extends Midia {
         super(caminho, nome, descricao);
         this.idioma = idioma;
         this.genero = genero;
+        autores = new <String>ArrayList();
         this.autores.add(autor);
+        interpretes = new <String>ArrayList();
         this.interpretes.add(interprete);
         this.duracao = duracao;
         this.ano = ano;
@@ -179,11 +182,17 @@ public class Musica extends Midia {
         this.ano = ano;
     }
 
-    public void adicionarAutor(String autor) {
-        this.autores.add(autor);
+    public boolean adicionarAutor(String autor) {
+        return this.autores.add(autor);
     }
     
     public void adicionarInterprete (String interprete) {
         this.interpretes.add(interprete);
+    }
+    
+    public void exibirAutor(){
+        for (String autor : autores) {
+            System.out.println(autor);
+        }
     }
 }
