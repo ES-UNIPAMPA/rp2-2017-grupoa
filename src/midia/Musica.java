@@ -185,14 +185,19 @@ public class Musica extends Midia {
     public boolean adicionarAutor(String autor) {
         return this.autores.add(autor);
     }
-    
-    public void adicionarInterprete (String interprete) {
+
+    public void adicionarInterprete(String interprete) {
         this.interpretes.add(interprete);
     }
-    
-    public void exibirAutor(){
+
+    public void exibirAutor() {
         for (String autor : autores) {
             System.out.println(autor);
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + this.genero + "\n" + this.autores + "\n" + this.ano + "\n" + this.idioma + "\n" + this.interpretes + "\n" + this.duracao + "\n";
     }
 }

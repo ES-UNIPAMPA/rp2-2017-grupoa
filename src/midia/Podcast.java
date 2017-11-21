@@ -106,9 +106,14 @@ public class Podcast extends Midia {
     public void setAno(int ano) {
         this.ano = ano;
     }
-    
-    public void adicionarAutor(String autor){
+
+    public void adicionarAutor(String autor) {
         this.autores.add(autor);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + this.idioma + "\n" + this.autores + "\n" + this.ano + "\n";
     }
 
 }
