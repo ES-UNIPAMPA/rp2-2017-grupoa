@@ -85,9 +85,12 @@ public class ColecaoMusica extends Colecao {
                 super.cadastrarMidia(new Musica(caminho, nome, descricao, idioma, genero, autores, interpretes, duracao, ano));
 
                 buff.readLine();
+                autores.clear();
+                interpretes.clear();
+            }
+            
                 buff.close();
                 reader.close();
-            }
         }
     }
 

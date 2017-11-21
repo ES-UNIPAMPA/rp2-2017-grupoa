@@ -42,8 +42,8 @@ public class Musica extends Midia {
         super(caminho, nome, descricao);
         this.idioma = idioma;
         this.genero = genero;
-        autores = new ArrayList(autores);
-        interpretes = new ArrayList(interpretes);
+        this.autores = new ArrayList(autores);
+        this.interpretes = new ArrayList(interpretes);
         this.duracao = duracao;
         this.ano = ano;
     }
