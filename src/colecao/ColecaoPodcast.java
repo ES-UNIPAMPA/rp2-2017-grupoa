@@ -53,36 +53,38 @@ public class ColecaoPodcast extends Colecao {
     @Override
     public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException, FileNotFoundException, IOException, UnsupportedEncodingException {
         File arquivo = new File(caminhoArquivo);
+        if (arquivo.exists()) {
+            FileReader reader = new FileReader(arquivo);
+            BufferedReader buff = new BufferedReader(reader);
 
-        FileReader reader = new FileReader(arquivo);
-        BufferedReader buff = new BufferedReader(reader);
+            //Atributos da Super Classe
+            String caminho;
+            String nome;
+            String descricao;
 
-        //Atributos da Super Classe
-        String caminho;
-        String nome;
-        String descricao;
+            //Atributos da class Musica
+            String idioma;
+            List<String> autores = new ArrayList();
+            int ano;
 
-        //Atributos da class Musica
-        String idioma;
-        List<String> autores = new ArrayList();
-        int ano;
+            while ((caminho = buff.readLine()) != null) {
 
-        while ((caminho = buff.readLine()) != null) {
+                // Atributos da super class sendo lidos
+                nome = buff.readLine();
+                descricao = buff.readLine();
 
-            // Atributos da super class sendo lidos
-            nome = buff.readLine();
-            descricao = buff.readLine();
+                // Atributos da class Podcast sendo lidos
+                idioma = buff.readLine();
+                autores.addAll(Arrays.asList(buff.readLine().split(";")));
+                ano = Integer.parseInt(buff.readLine());
 
-            // Atributos da class Podcast sendo lidos
-            idioma = buff.readLine();
-            autores.addAll(Arrays.asList(buff.readLine().split(";")));
-            ano = Integer.parseInt(buff.readLine());
+                //instancia o objeto com os atributos lidos acima
+                super.cadastrarMidia(new Podcast(caminho, nome, descricao, idioma, autores, ano));
 
-            //instancia o objeto com os atributos lidos acima
-            super.cadastrarMidia(new Podcast(caminho, nome, descricao, idioma, autores, ano));
-
-            buff.readLine();
-            autores.clear();
+                buff.readLine();
+                buff.close();
+                reader.close();
+            }
         }
     }
 

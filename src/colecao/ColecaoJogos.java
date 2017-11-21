@@ -32,7 +32,6 @@ public class ColecaoJogos extends Colecao {
     @Override
     public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
         File arquivo = new File(caminhoArquivo);
-
         FileReader reader = new FileReader(arquivo);
         BufferedReader buff = new BufferedReader(reader);
 
