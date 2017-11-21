@@ -33,11 +33,27 @@ public abstract class Colecao implements IColecao {
         this.listaDeMidias = new ArrayList(listaDeMidias);
     }
 
+    /**
+     *
+     * Recebe uma midia por parametro e a adiciona ao array listaDeMidias
+     *
+     * @param midia
+     * @return
+     */
     @Override
     public boolean cadastrarMidia(Midia midia) {
         return this.listaDeMidias.add(midia);
     }
 
+    /**
+     *
+     * Recebe uma String pesquisa, percorre a listaDeMidias, usa o método
+     * contains pra fazer a comparação e quando encontrada a midia especifica,
+     * remove-a
+     *
+     * @param pesquisa
+     * @return
+     */
     @Override
     public boolean removerMidia(String pesquisa) {
         for (Midia midia : listaDeMidias) {
@@ -50,6 +66,15 @@ public abstract class Colecao implements IColecao {
         return false;
     }
 
+    /**
+     *
+     * Método para recebe uma String e uma midia, depois, percorre a
+     * listaDeMidias, e compara as midias presentes no array, para poder setar
+     *
+     * @param pesquisa
+     * @param midia
+     * @return
+     */
     @Override
     public boolean editarMidia(String pesquisa, Midia midia) {
         for (int i = 0; i < listaDeMidias.size(); i++) {
@@ -62,8 +87,17 @@ public abstract class Colecao implements IColecao {
         return false;
     }
 
+    /**
+     *
+     * Recebe uma String pesquisa, e percore a listaDeMidias até encontrar a
+     * midia especifica e encontrada pelo método contais, adicionando-a a uma
+     * nova lista e a retornando!
+     *
+     * @param pesquisa
+     * @return
+     */
     @Override
-        public List consultarMidia(String pesquisa) {
+    public List consultarMidia(String pesquisa) {
         List<Midia> lista = new ArrayList();
         for (Midia midia : listaDeMidias) {
             if (midia.contains(pesquisa)) {
@@ -73,13 +107,31 @@ public abstract class Colecao implements IColecao {
         return lista;
     }
 
+    /**
+     *
+     * Apenas retorna a listaDeMidias para visualização!
+     *
+     * @return listaDeMidias
+     */
     @Override
-        public List exibirMidia() {
+    public List exibirMidia() {
         return this.listaDeMidias;
     }
 
+    /**
+     *
+     * Recebe por parametro o nomedoarquivo, cria o arquivo, e chama o método
+     * toString para escrever os atributos no arquivo!
+     *
+     * @param nomeArquivo
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     * @throws NullPointerException
+     * @throws ClassCastException
+     * @throws IOException
+     */
     @Override
-        public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
+    public void exportarMidias(String nomeArquivo) throws FileNotFoundException, UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
         FileOutputStream outFile;
         BufferedWriter buff;
 

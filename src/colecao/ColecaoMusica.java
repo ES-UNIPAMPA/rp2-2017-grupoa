@@ -11,7 +11,6 @@ import midia.Musica;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -37,7 +36,7 @@ public class ColecaoMusica extends Colecao {
     /**
      *
      * Método que recebe por param o caminho, cria variaveis dos atributos da
-     * class Musica, e le cada linha do arquivo fazendo um parser de acordo com
+     * class Musica, e lê cada linha do arquivo fazendo um parser de acordo com
      * seu tipo (quando necessario) e atribuindo os valores nas variaveis
      * indicadas, após isso, instancia um novo objeto com os valores do arquivo!
      *
@@ -45,9 +44,11 @@ public class ColecaoMusica extends Colecao {
      * @throws NumberFormatException
      * @throws NullPointerException
      * @throws IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.io.UnsupportedEncodingException
      */
     @Override
-    public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
+    public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException, FileNotFoundException, IOException, UnsupportedEncodingException {
         File arquivo = new File(caminhoArquivo);
 
         FileReader reader = new FileReader(arquivo);
@@ -68,10 +69,11 @@ public class ColecaoMusica extends Colecao {
 
         while ((caminho = buff.readLine()) != null) {
 
+            // Atributos da super class sendo lidos
             nome = buff.readLine();
             descricao = buff.readLine();
 
-            // Atributos da class Musica
+            // Atributos da class Musica sendo lidos
             idioma = buff.readLine();
             genero = buff.readLine();
             autores.addAll(Arrays.asList(buff.readLine().split(";")));
@@ -79,7 +81,7 @@ public class ColecaoMusica extends Colecao {
             duracao = Integer.parseInt(buff.readLine());
             ano = Integer.parseInt(buff.readLine());
 
-            //instancia o objeto com os atributos lidos a cima
+            //instancia o objeto com os atributos lidos acima
             super.cadastrarMidia(new Musica(caminho, nome, descricao, idioma, genero, autores, interpretes, duracao, ano));
 
             buff.readLine();
