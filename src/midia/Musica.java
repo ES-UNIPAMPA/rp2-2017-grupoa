@@ -33,19 +33,17 @@ public class Musica extends Midia {
      * @param idioma
      * @param genero
      * @param autores
-     * @param interprete
+     * @param interpretes
      * @param duracao
      * @param ano
      *
      */
-    public Musica(String caminho, String nome, String descricao, String idioma, String genero, String autor, String interprete, int duracao, int ano) {
+    public Musica(String caminho, String nome, String descricao, String idioma, String genero, List<String> autores, List<String> interpretes, int duracao, int ano) {
         super(caminho, nome, descricao);
         this.idioma = idioma;
         this.genero = genero;
-        autores = new <String>ArrayList();
-        this.autores.add(autor);
-        interpretes = new <String>ArrayList();
-        this.interpretes.add(interprete);
+        autores = new ArrayList(autores);
+        interpretes = new ArrayList(interpretes);
         this.duracao = duracao;
         this.ano = ano;
     }
@@ -182,14 +180,17 @@ public class Musica extends Midia {
         this.ano = ano;
     }
 
+    @Deprecated
     public boolean adicionarAutor(String autor) {
         return this.autores.add(autor);
     }
 
+    @Deprecated
     public void adicionarInterprete(String interprete) {
         this.interpretes.add(interprete);
     }
 
+    @Deprecated
     public void exibirAutor() {
         for (String autor : autores) {
             System.out.println(autor);
@@ -198,6 +199,6 @@ public class Musica extends Midia {
 
     @Override
     public String toString() {
-        return super.toString() + this.genero + "\n" + this.autores + "\n" + this.ano + "\n" + this.idioma + "\n" + this.interpretes + "\n" + this.duracao + "\n";
+        return super.toString() + this.genero + "\n" + super.listToString(this.autores) + "\n" + this.ano + "\n" + this.idioma + "\n" + super.listToString(this.interpretes) + "\n" + this.duracao + "\n";
     }
 }

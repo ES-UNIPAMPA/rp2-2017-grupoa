@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 /**
  *
  * @author Leonardo Severo Pedroso
@@ -33,6 +34,18 @@ public class ColecaoMusica extends Colecao {
         super(listaDeMidia);
     }
 
+    /**
+     *
+     * Método que recebe por param o caminho, cria variaveis dos atributos da
+     * class Musica, e le cada linha do arquivo fazendo um parser de acordo com
+     * seu tipo (quando necessario) e atribuindo os valores nas variaveis
+     * indicadas, após isso, instancia um novo objeto com os valores do arquivo!
+     *
+     * @param caminhoArquivo
+     * @throws NumberFormatException
+     * @throws NullPointerException
+     * @throws IOException
+     */
     @Override
     public void importarMidias(String caminhoArquivo) throws NumberFormatException, NullPointerException, IOException {
         File arquivo = new File(caminhoArquivo);
@@ -44,7 +57,7 @@ public class ColecaoMusica extends Colecao {
         String caminho;
         String nome;
         String descricao;
-        
+
         //Atributos da class Musica
         String idioma;
         String genero;
@@ -58,7 +71,7 @@ public class ColecaoMusica extends Colecao {
             nome = buff.readLine();
             descricao = buff.readLine();
 
-            // Atributos da classe
+            // Atributos da class Musica
             idioma = buff.readLine();
             genero = buff.readLine();
             autores.addAll(Arrays.asList(buff.readLine().split(";")));
@@ -66,14 +79,18 @@ public class ColecaoMusica extends Colecao {
             duracao = Integer.parseInt(buff.readLine());
             ano = Integer.parseInt(buff.readLine());
 
-            super.cadastrarMidia(new Musica(caminho, nome, descricao, genero, autores, interpretes, duracao, ano));
+            //instancia o objeto com os atributos lidos a cima
+            super.cadastrarMidia(new Musica(caminho, nome, descricao, idioma, genero, autores, interpretes, duracao, ano));
 
-            //Solta uma linha
             buff.readLine();
             autores.clear();
         }
     }
 
+    /**
+     * Not implemented yet!
+     */
+    @Deprecated
     @Override
     public void ordenar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

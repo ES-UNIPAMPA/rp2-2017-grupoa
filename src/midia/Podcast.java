@@ -32,13 +32,11 @@ public class Podcast extends Midia {
      * @param ano
      *
      */
-    public Podcast(String caminho, String nome, String descricao, String idioma, String autor, int ano) {
+    public Podcast(String caminho, String nome, String descricao, String idioma, List<String> autores, int ano) {
         super(caminho, nome, descricao);
         this.idioma = idioma;
-        this.autores = new ArrayList();
+        this.autores = new ArrayList(autores);
         this.ano = ano;
-
-        autores.add(autor);
     }
 
     /**
@@ -106,14 +104,15 @@ public class Podcast extends Midia {
     public void setAno(int ano) {
         this.ano = ano;
     }
-
+    
+    @Deprecated
     public void adicionarAutor(String autor) {
         this.autores.add(autor);
     }
 
     @Override
     public String toString() {
-        return super.toString() + this.idioma + "\n" + this.autores + "\n" + this.ano + "\n";
+        return super.toString() + this.idioma + "\n" + super.listToString(this.autores) + "\n" + this.ano + "\n";
     }
 
 }

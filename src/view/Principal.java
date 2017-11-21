@@ -33,13 +33,6 @@ public class Principal {
         Jogo jogo1 = new Jogo("C:\\Riot Games\\League of Legends\\LeagueClient.exe", "League of Legends", "É um jogo eletrônico do gênero multiplayer online battle arena, desenvolvido e publicado pela Riot Games para Microsoft Windows e Mac OS X.", "Multiplayer online battle arena", autoresJogo1, 2009, 100000000, true);
         colecaoJogos.cadastrarMidia(jogo1);
         System.out.println(colecaoJogos.exibirMidia());
-        
-        Colecao colecaoMusica = new ColecaoMusica(new ArrayList());
-        Musica run = new Musica("idk", "Run", "Just run", "English",  "grove",  "Awolnation", "idk", 3, 2015);
-        run.adicionarAutor("Eu");
-        run.adicionarAutor("Linkin Park");
-        run.exibirAutor();
-        colecaoMusica.cadastrarMidia(run);
 
     }
 }
