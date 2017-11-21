@@ -60,13 +60,26 @@ public class Jogo extends Midia {
     }
 
     /**
+     * Captura a quantidade de autores cadastrados.
+     *
+     * @return int
+     */
+    public int getQuantidadeAutores() {
+        return this.autores.size();
+    }
+
+    /**
      * Altera o atributo autores.
      *
      * @param autor Nome do autor para ser adicionado a lista.
-     * @return True se a mídia for incluída com sucesso e False caso contrário. 
+     * @return True se a mídia for incluída com sucesso e False caso contrário.
      */
     public boolean addAutor(String autor) {
         return this.autores.add(autor);
+    }
+    
+    public boolean removeAutor(String autor){
+        return this.autores.remove(autor);
     }
 
     /**

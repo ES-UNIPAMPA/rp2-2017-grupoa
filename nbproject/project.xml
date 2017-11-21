@@ -12,9 +12,11 @@
             </test-roots>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>abaixo</word>
             <word>Adiciona</word>
             <word>adicionadas</word>
             <word>adicionado</word>
+            <word>administrada</word>
             <word>Altera</word>
             <word>alterada</word>
             <word>ano</word>
@@ -23,6 +25,7 @@
             <word>atualizada</word>
             <word>autor</word>
             <word>autores</word>
+            <word>cadastrados</word>
             <word>Caminho</word>
             <word>Captura</word>
             <word>caso</word>
@@ -34,11 +37,14 @@
             <word>corretamente</word>
             <word>critério</word>
             <word>da</word>
+            <word>deverão</word>
             <word>Exibe</word>
             <word>Exporta</word>
+            <word>filha</word>
             <word>foi</word>
             <word>forem</word>
             <word>gênero</word>
+            <word>implementados</word>
             <word>incluída</word>
             <word>incluídas</word>
             <word>informada</word>
@@ -52,15 +58,20 @@
             <word>mídia</word>
             <word>mídias</word>
             <word>Ordena</word>
+            <word>Os</word>
             <word>ou</word>
             <word>palavra</word>
             <word>partir</word>
             <word>parâmetro</word>
+            <word>passada</word>
             <word>pesquisa</word>
             <word>pesquisada</word>
+            <word>por</word>
+            <word>quantidade</word>
             <word>que</word>
             <word>removida</word>
             <word>se</word>
+            <word>será</word>
             <word>sucesso</word>
             <word>texto</word>
             <word>todas</word>
