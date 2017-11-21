@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -32,7 +35,7 @@ import midia.Midia;
  * <gustavo.satheler@alunos.unipampa.edu.br>
  * <gustavosatheler@gmail.com>
  */
-public class Principal_old extends javax.swing.JFrame {
+public class TelaOld extends javax.swing.JFrame {
 
     private ColecaoJogos colecaoJogos;
     DefaultTableModel tabelaJogos;
@@ -40,10 +43,10 @@ public class Principal_old extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public Principal_old() {
+    public TelaOld() {
         initComponents();
         this.colecaoJogos = new ColecaoJogos(new ArrayList());
-        this.tabelaJogos = (DefaultTableModel) jTable_cj_tabela.getModel();
+        this.tabelaJogos = (DefaultTableModel) jTable2.getModel();
 
     }
 
@@ -58,76 +61,87 @@ public class Principal_old extends javax.swing.JFrame {
 
         jTabbedPane_colecoes = new javax.swing.JTabbedPane();
         jPanel_colecaoJogos = new javax.swing.JPanel();
-        jButton_cJ_importar = new javax.swing.JButton();
-        jButton_cJ_exportar = new javax.swing.JButton();
-        jLabel_cJ_titulo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_cj_tabela = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
-        jButton_cadastrar = new javax.swing.JButton();
-        jButton_excluir = new javax.swing.JButton();
+        jButton_Jogos_importar = new javax.swing.JButton();
+        jButton_Jogos_exportar = new javax.swing.JButton();
+        jLabel_Jogos_titulo = new javax.swing.JLabel();
+        jButton_Jogos_cadastrar = new javax.swing.JButton();
+        jButton_Jogos_excluir = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca de mídias");
 
         jTabbedPane_colecoes.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        jButton_cJ_importar.setText("Importar arquivo");
-        jButton_cJ_importar.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Jogos_importar.setText("Importar arquivo");
+        jButton_Jogos_importar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_cJ_importarActionPerformed(evt);
+                jButton_Jogos_importarActionPerformed(evt);
             }
         });
 
-        jButton_cJ_exportar.setText("Exportar arquivo");
-        jButton_cJ_exportar.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Jogos_exportar.setText("Exportar arquivo");
+        jButton_Jogos_exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_cJ_exportarActionPerformed(evt);
+                jButton_Jogos_exportarActionPerformed(evt);
             }
         });
 
-        jLabel_cJ_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel_cJ_titulo.setText("Biblioteca de Jogos");
+        jLabel_Jogos_titulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel_Jogos_titulo.setText("Biblioteca de Jogos");
 
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        jButton_Jogos_cadastrar.setText("Cadastrar novo");
 
-        jTable_cj_tabela.setModel(new javax.swing.table.DefaultTableModel(
+        jButton_Jogos_excluir.setText("Excluir selecionado");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"Teste", "Teste", "Teste", "Teste"},
+                {"Teste1", "Teste1", "Teste1", "Teste1"},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Caminho", "Titulo", "Descrição", "Genero", "Autores", "Ano", "Número de Jogadores", "Suporte à rede"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
-        jScrollPane1.setViewportView(jTable_cj_tabela);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jButton_cadastrar.setText("Cadastrar novo");
-
-        jButton_excluir.setText("Excluir selecionado");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel_colecaoJogosLayout = new javax.swing.GroupLayout(jPanel_colecaoJogos);
         jPanel_colecaoJogos.setLayout(jPanel_colecaoJogosLayout);
         jPanel_colecaoJogosLayout.setHorizontalGroup(
             jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 930, Short.MAX_VALUE)
-                    .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
-                        .addComponent(jLabel_cJ_titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_cadastrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_cJ_importar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_cJ_exportar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_colecaoJogosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton_excluir)))
+                        .addComponent(jButton_Jogos_excluir))
+                    .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
+                                .addComponent(jLabel_Jogos_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addGap(514, 514, 514)
+                                .addComponent(jButton_Jogos_cadastrar)
+                                .addGap(39, 39, 39)
+                                .addComponent(jButton_Jogos_importar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton_Jogos_exportar))
+                            .addComponent(jScrollPane2))))
                 .addContainerGap())
         );
         jPanel_colecaoJogosLayout.setVerticalGroup(
@@ -135,20 +149,17 @@ public class Principal_old extends javax.swing.JFrame {
             .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
-                        .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton_cJ_importar)
-                            .addComponent(jButton_cJ_exportar))
-                        .addGap(0, 1, Short.MAX_VALUE))
                     .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel_cJ_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_cadastrar))
-                    .addComponent(jSeparator1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton_excluir)
-                .addGap(7, 7, 7))
+                        .addComponent(jLabel_Jogos_titulo)
+                        .addComponent(jButton_Jogos_cadastrar))
+                    .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton_Jogos_importar)
+                        .addComponent(jButton_Jogos_exportar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_Jogos_excluir)
+                .addGap(3, 3, 3))
         );
 
         jTabbedPane_colecoes.addTab("Jogos", jPanel_colecaoJogos);
@@ -168,7 +179,28 @@ public class Principal_old extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_cJ_importarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cJ_importarActionPerformed
+    private void jButton_Jogos_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Jogos_exportarActionPerformed
+        String arquivo = carregarArquivo();
+
+        try {
+            colecaoJogos.exportarMidias(arquivo);
+            JOptionPane.showMessageDialog(null, "Mídias exportadas com sucesso.");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TelaOld.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Arquivo não encontrado.");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(TelaOld.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Arquivo com codificação não suportada.");
+        } catch (NullPointerException | ClassCastException ex) {
+            Logger.getLogger(TelaOld.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(TelaOld.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Não foi possivel exportar.");
+        }
+    }//GEN-LAST:event_jButton_Jogos_exportarActionPerformed
+
+    private void jButton_Jogos_importarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Jogos_importarActionPerformed
         String arquivo = carregarArquivo();
 
         try {
@@ -176,15 +208,15 @@ public class Principal_old extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Mídias inseridas com sucesso.");
 
         } catch (NumberFormatException ex) {
-            Logger.getLogger(Principal_old.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaOld.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Dados incompatíveis com essa mídia.");
 
         } catch (NullPointerException ex) {
-            Logger.getLogger(Principal_old.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaOld.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
 
         } catch (IOException ex) {
-            Logger.getLogger(Principal_old.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaOld.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
         }
 
@@ -203,28 +235,14 @@ public class Principal_old extends javax.swing.JFrame {
                 jogo.hasSuporteRede()
             });
         }
-    }//GEN-LAST:event_jButton_cJ_importarActionPerformed
+    }//GEN-LAST:event_jButton_Jogos_importarActionPerformed
 
-    private void jButton_cJ_exportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_cJ_exportarActionPerformed
-        String arquivo = carregarArquivo();
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
 
-        try {
-            colecaoJogos.exportarMidias(arquivo);
-            JOptionPane.showMessageDialog(null, "Mídias exportadas com sucesso.");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Principal_old.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Arquivo não encontrado.");
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Principal_old.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Arquivo com codificação não suportada.");
-        } catch (NullPointerException | ClassCastException ex) {
-            Logger.getLogger(Principal_old.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (IOException ex) {
-            Logger.getLogger(Principal_old.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Não foi possivel exportar.");
-        }
-    }//GEN-LAST:event_jButton_cJ_exportarActionPerformed
+        //JOptionPane.showMessageDialog(null, );
+        
+
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -243,21 +261,23 @@ public class Principal_old extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal_old.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaOld.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal_old().setVisible(true);
+                new TelaOld().setVisible(true);
             }
         });
     }
@@ -283,15 +303,14 @@ public class Principal_old extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_cJ_exportar;
-    private javax.swing.JButton jButton_cJ_importar;
-    private javax.swing.JButton jButton_cadastrar;
-    private javax.swing.JButton jButton_excluir;
-    private javax.swing.JLabel jLabel_cJ_titulo;
+    private javax.swing.JButton jButton_Jogos_cadastrar;
+    private javax.swing.JButton jButton_Jogos_excluir;
+    private javax.swing.JButton jButton_Jogos_exportar;
+    private javax.swing.JButton jButton_Jogos_importar;
+    private javax.swing.JLabel jLabel_Jogos_titulo;
     private javax.swing.JPanel jPanel_colecaoJogos;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane_colecoes;
-    private javax.swing.JTable jTable_cj_tabela;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

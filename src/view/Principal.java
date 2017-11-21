@@ -5,17 +5,12 @@
  */
 package view;
 
-import colecao.Colecao;
+import interacao.Interacao;
+
 import colecao.ColecaoJogos;
-import colecao.ColecaoMusica;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
+import interacao.InteracaoJogos;
+import interacao.InteracaoPrincipal;
 import java.util.ArrayList;
-import java.util.List;
-
-import midia.Jogo;
-import midia.Musica;
 
 /**
  *
@@ -23,23 +18,19 @@ import midia.Musica;
  * <gustavo.satheler@alunos.unipampa.edu.br>
  * <gustavosatheler@gmail.com>
  */
+
 public class Principal {
 
-    public static void main(String[] args) throws UnsupportedEncodingException, NullPointerException, ClassCastException, IOException {
-        Colecao colecaoJogos = new ColecaoJogos(new ArrayList());
-        List<String> autoresJogo1 = new ArrayList();
+    public static void main(String[] args) {
+        ColecaoJogos colecaoJogos = new ColecaoJogos(new ArrayList());
 
-        autoresJogo1.add("Brandon Beck");
-        autoresJogo1.add("Marc Merril");
+        // Gera o frame principal e a aba principal
+        InteracaoPrincipal interacaoPrincipal = new InteracaoPrincipal();
 
-        Jogo jogo1 = new Jogo("C:\\Riot Games\\League of Legends\\LeagueClient.exe", "League of Legends", "É um jogo eletrônico do gênero multiplayer online battle arena, desenvolvido e publicado pela Riot Games para Microsoft Windows e Mac OS X.", "Multiplayer online battle arena", autoresJogo1, 2009, 100000000, true);
-        colecaoJogos.cadastrarMidia(jogo1);
-        System.out.println(colecaoJogos.exibirMidia());
+        // Para cada instãncia, é gerado uma nova aba
+        InteracaoJogos interacaoJogo = new InteracaoJogos("Jogos", colecaoJogos);
+        interacaoJogo.gerarAba(interacaoPrincipal);
 
-        Colecao colecaMusica = new ColecaoMusica(new ArrayList());
-        colecaMusica.importarMidias("....");
-        colecaMusica.exibirMidia();
-        
-
+        interacaoPrincipal.iniciar();
     }
 }
