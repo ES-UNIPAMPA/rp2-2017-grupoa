@@ -16,6 +16,9 @@ import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+
 import midia.Jogo;
 
 /**
@@ -26,11 +29,13 @@ import midia.Jogo;
  */
 public class InteracaoJogos extends Interacao {
 
-    CadastroJogo cadastroJogo;
+    FormularioJogo formulario;
 
     public InteracaoJogos(String tituloColecao, Colecao colecao) {
         super(tituloColecao, colecao);
-        this.cadastroJogo = new CadastroJogo();
+        this.formulario = new FormularioJogo(colecao);
+        this.formulario.setLocationRelativeTo(null);
+        this.formulario.setResizable(false);
     }
 
     @Override
@@ -40,7 +45,7 @@ public class InteracaoJogos extends Interacao {
             String arquivo = carregarArquivo();
 
             try {
-                super.colecao.importarMidias(arquivo);
+                colecao.importarMidias(arquivo);
                 JOptionPane.showMessageDialog(null, "Mídias inseridas com sucesso.");
 
             } catch (NumberFormatException ex) {
@@ -56,21 +61,7 @@ public class InteracaoJogos extends Interacao {
                 JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
             }
 
-            super.tabela.setRowCount(0);
-
-            for (Object midia : super.colecao.exibirMidia()) {
-                Jogo jogo = (Jogo) midia;
-                super.tabela.addRow(new Object[]{
-                    jogo.getCaminho(),
-                    jogo.getTitulo(),
-                    jogo.getDescricao(),
-                    jogo.getGenero(),
-                    jogo.getAutores(),
-                    jogo.getAno(),
-                    jogo.getNumeroJogadores(),
-                    jogo.hasSuporteRede()
-                });
-            }
+            this.atualizarTabela();
         });
     }
 
@@ -78,24 +69,67 @@ public class InteracaoJogos extends Interacao {
     protected void botaoCadastrar() {
         jButton_cadastrar.setText("Cadastrar novo");
         jButton_cadastrar.addActionListener((ActionEvent evt) -> {
-            cadastroJogo.setUndecorated(true);
-            cadastroJogo.setResizable(false);
-            cadastroJogo.setVisible(true);
+            formulario.setModoCadastrar();
 
+            formulario.setTabela(modelTabela);
+            formulario.setVisible(true);
+        });
+    }
+
+    @Override
+    protected void eventoEditar() {
+        jTable_tabela.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int row = jTable_tabela.getSelectedRow();
+                    String caminhoAnterior = (String) jTable_tabela.getValueAt(row, 0);
+                    String tituloAnterior = (String) jTable_tabela.getValueAt(row, 1);
+
+                    formulario.setModoEditar(caminhoAnterior, tituloAnterior);
+                    formulario.setTabela(modelTabela);
+                    formulario.setVisible(true);
+                }
+            }
         });
     }
 
     @Override
     protected void layoutTabela() {
-        jTable_tabela.setModel(super.tabela = new DefaultTableModel(
+        jTable_tabela.setModel(modelTabela = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
                     "Caminho", "Titulo", "Descrição", "Genero", "Autores", "Ano", "Número de Jogadores", "Suporte à rede"
                 }
-        ));
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        ;
+        });
 
         jScrollPane_colecao.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane_colecao.setViewportView(jTable_tabela);
+    }
+
+    @Override
+    protected void atualizarTabela() {
+        modelTabela.setRowCount(0);
+
+        for (Object midia : colecao.exibirMidia()) {
+            Jogo jogo = (Jogo) midia;
+            modelTabela.addRow(new Object[]{
+                jogo.getCaminho(),
+                jogo.getTitulo(),
+                jogo.getDescricao(),
+                jogo.getGenero(),
+                jogo.getAutores(),
+                jogo.getAno(),
+                jogo.getNumeroJogadores(),
+                jogo.hasSuporteRede()
+            });
+        }
     }
 
 }

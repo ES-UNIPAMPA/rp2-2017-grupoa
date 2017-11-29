@@ -24,10 +24,9 @@ public interface IColecao {
     /**
      * Adiciona uma mídia a coleção.
      *
-     * @param midia Midia
-     * @return True se a mídia for incluída com sucesso e False caso contrário.
+     * @param midia Midia a ser inserida.
      */
-    public boolean cadastrarMidia(Midia midia);
+    public void cadastrarMidia(Midia midia);
 
     /**
      * Remove a Midia com a palavra informada.
@@ -48,13 +47,22 @@ public interface IColecao {
     public boolean editarMidia(String pesquisa, Midia midia);
 
     /**
+     * Exibe a primeira mídia encontrada na coleção que contém a palavra
+     * pesquisada.
+     *
+     * @param pesquisa Parâmetro utilizado para a pesquisa.
+     * @return Uma lista de mídias com a palavra pesquisada.
+     */
+    public Midia consultarMidia(String pesquisa);
+
+    /**
      * Exibe todas as mídias adicionadas a coleção que contém a palavra
      * pesquisada.
      *
      * @param pesquisa Parâmetro utilizado para a pesquisa.
      * @return Uma lista de mídias com a palavra pesquisada.
      */
-    public List consultarMidia(String pesquisa);
+    public List consultarMidias(String pesquisa);
 
     /**
      * Exibe todas as mídias adicionadas a coleção.
@@ -86,7 +94,7 @@ public interface IColecao {
 
     /**
      * Ordena o a lista de coleção.
-     * 
+     *
      */
     public void ordenar();
 }

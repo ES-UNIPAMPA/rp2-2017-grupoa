@@ -47,7 +47,7 @@ public abstract class Interacao {
     protected JScrollPane jScrollPane_colecao;
     private JSeparator jSeparator_colecao;
     protected JTable jTable_tabela;
-    DefaultTableModel tabela;
+    DefaultTableModel modelTabela;
     protected Colecao colecao;
 
     public Interacao(String tituloColecao, Colecao colecao) {
@@ -63,13 +63,14 @@ public abstract class Interacao {
         this.jButton_cadastrar = new JButton();
         this.jButton_excluir = new JButton();
 
-        this.tabela = (DefaultTableModel) jTable_tabela.getModel();
+        this.modelTabela = (DefaultTableModel) jTable_tabela.getModel();
     }
 
     public void gerarAba(InteracaoPrincipal interacaoPrincipal) {
         tituloColecao();
         layoutTabela();
         botaoCadastrar();
+        eventoEditar();
         botaoImportar(colecao);
         botaoExportar(colecao);
         botaoExcluir();
@@ -110,9 +111,9 @@ public abstract class Interacao {
                 int linha = jTable_tabela.getSelectedRow();
                 if (linha >= 0) {
                     tituloLinha = (String) jTable_tabela.getValueAt(linha, 1);
-                    tabela.removeRow(linha);
+                    modelTabela.removeRow(linha);
                     linha = jTable_tabela.getSelectedRow();
-                    jTable_tabela.setModel(tabela);
+                    jTable_tabela.setModel(modelTabela);
 
                     colecao.removerMidia(tituloLinha);
 
@@ -152,7 +153,7 @@ public abstract class Interacao {
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(jButton_exportar)
                                                         )
-                                                        .addComponent(jScrollPane_colecao)
+                                                        .addComponent(jScrollPane_colecao, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
                                                 )
                                         )
                                 )
@@ -174,12 +175,17 @@ public abstract class Interacao {
                                         )
                                 )
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane_colecao, GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                                .addComponent(jScrollPane_colecao, GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton_excluir)
                                 .addGap(7, 7, 7)
                         )
         );
+
+        jTable_tabela.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable_tabela.setRequestFocusEnabled(false);
+        jTable_tabela.setAutoCreateRowSorter(true);
+        
     }
 
     /**
@@ -203,16 +209,40 @@ public abstract class Interacao {
         });
     }
 
+    protected void eventoEditar() {
+        jTable_tabela.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int row = jTable_tabela.getSelectedRow();
+                    //JOptionPane.showMessageDialog(null, modelTabela.getValueAt(row, 1));
+                    JOptionPane.showMessageDialog(null, "Não implementado - eventoEditar");
+                }
+            }
+        });
+        
+    }
+
     protected void layoutTabela() {
-        jTable_tabela.setModel(this.tabela = new DefaultTableModel(
+        jTable_tabela.setModel(this.modelTabela = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
                     "Caminho", "Titulo", "Descrição"
                 }
-        ));
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        ;
+        });
 
         jScrollPane_colecao.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane_colecao.setViewportView(jTable_tabela);
+    }
+
+    protected void atualizarTabela() {
+        JOptionPane.showMessageDialog(null, "Não implementado - atualizarTabela");
     }
 
 }

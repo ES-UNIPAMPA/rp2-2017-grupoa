@@ -82,15 +82,15 @@ public class ColecaoMusica extends Colecao {
                 ano = Integer.parseInt(buff.readLine());
 
                 //instancia o objeto com os atributos lidos acima
-                super.cadastrarMidia(new Musica(caminho, nome, descricao, idioma, genero, autores, interpretes, duracao, ano));
+                super.cadastrarMidia(new Musica(caminho, nome, descricao, idioma, genero, new ArrayList(autores), new ArrayList(interpretes), duracao, ano));
 
                 buff.readLine();
                 autores.clear();
                 interpretes.clear();
             }
-            
-                buff.close();
-                reader.close();
+
+            buff.close();
+            reader.close();
         }
     }
 

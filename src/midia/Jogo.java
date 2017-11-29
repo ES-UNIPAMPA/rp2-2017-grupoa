@@ -6,8 +6,7 @@
 package midia;
 
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Objects;
 
 /**
  *
@@ -25,11 +24,11 @@ public class Jogo extends Midia {
 
     public Jogo(String caminho, String titulo, String descricao, String genero, List<String> autores, int ano, int numeroJogadores, boolean suporteRede) {
         super(caminho, titulo, descricao);
-        this.genero = genero;
-        this.autores = new ArrayList(autores);
-        this.ano = ano;
-        this.numeroJogadores = numeroJogadores;
-        this.suporteRede = suporteRede;
+        this.setGenero(genero);
+        this.setAutores(autores);
+        this.setAno(ano);
+        this.setNumeroJogadores(numeroJogadores);
+        this.setSuporteRede(suporteRede);
     }
 
     /**
@@ -47,7 +46,19 @@ public class Jogo extends Midia {
      * @param genero String
      */
     public void setGenero(String genero) {
+        if (super.verificarConsistencia(genero)) {
+            throw new IllegalArgumentException("O gênero não pode ser vazio.");
+        }
+
         this.genero = genero;
+    }
+
+    public void setAutores(List<String> autores) {
+        if (super.verificarConsistencia(autores)) {
+            throw new IllegalArgumentException("Adicione pelo menos 01 autor.");
+        }
+
+        this.autores = autores;
     }
 
     /**
@@ -77,8 +88,8 @@ public class Jogo extends Midia {
     public boolean addAutor(String autor) {
         return this.autores.add(autor);
     }
-    
-    public boolean removeAutor(String autor){
+
+    public boolean removeAutor(String autor) {
         return this.autores.remove(autor);
     }
 
@@ -96,7 +107,10 @@ public class Jogo extends Midia {
      *
      * @param ano int
      */
-    public void setAno(int ano) {
+    public void setAno(int ano) throws IllegalArgumentException {
+        if (verificarConsistenciaAno(ano)) {
+            throw new IllegalArgumentException("Ano informado inválido.");
+        }
         this.ano = ano;
     }
 
@@ -114,7 +128,11 @@ public class Jogo extends Midia {
      *
      * @param numeroJogadores int
      */
-    public void setNumeroJogadores(int numeroJogadores) {
+    public void setNumeroJogadores(int numeroJogadores) throws ArithmeticException {
+        if (super.verificarConsistencia(numeroJogadores)) {
+            this.numeroJogadores = numeroJogadores * (-1);
+            throw new ArithmeticException("Número de Jogadores não pode ser negativo.\nPortanto ele foi transformado para um número positivo.");
+        }
         this.numeroJogadores = numeroJogadores;
     }
 
@@ -139,5 +157,55 @@ public class Jogo extends Midia {
     @Override
     public String toString() {
         return super.toString() + this.genero + "\n" + super.listToString(this.autores) + "\n" + this.ano + "\n" + this.numeroJogadores + "\n" + this.suporteRede + "\n";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        
+        if (obj == null) {
+            return false;
+        }
+        
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Jogo outro = (Jogo) obj;
+        
+        if (this.ano != outro.ano) {
+            return false;
+        }
+        
+        if (this.numeroJogadores != outro.numeroJogadores) {
+            return false;
+        }
+        
+        if (this.suporteRede != outro.suporteRede) {
+            return false;
+        }
+        
+        if (!Objects.equals(this.genero, outro.genero)) {
+            return false;
+        }
+        
+        if (!Objects.equals(this.autores, outro.autores)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.genero);
+        hash = 97 * hash + Objects.hashCode(this.autores);
+        hash = 97 * hash + this.ano;
+        hash = 97 * hash + this.numeroJogadores;
+        hash = 97 * hash + (this.suporteRede ? 1 : 0);
+        return hash;
     }
 }

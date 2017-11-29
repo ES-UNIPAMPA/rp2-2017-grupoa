@@ -5,7 +5,12 @@
  */
 package interacao;
 
+
+import java.awt.Toolkit;
+import java.awt.Dimension;
+
 import java.io.File;
+
 import javax.swing.GroupLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -31,6 +36,7 @@ public class InteracaoPrincipal {
     }
 
     public void iniciar() {
+        this.centralizarComponente();
         this.JFrame_principal.setVisible(true);
         this.JFrame_principal.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.JFrame_principal.setTitle("Biblioteca de mídias");
@@ -46,6 +52,13 @@ public class InteracaoPrincipal {
     private void painelColecoes() {
         jTabbedPane_colecoes.setTabPlacement(JTabbedPane.LEFT);
         jTabbedPane_colecoes.setSelectedIndex(-1);
+    }
+    
+    public void centralizarComponente() {
+        Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dw = JFrame_principal.getSize();
+        this.JFrame_principal.setLocation((ds.width - dw.width) / 16, (ds.height - dw.height) / 32);
+        //this.JFrame_principal.setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2); ORIGINAL
     }
 
     public static String carregarArquivo() {

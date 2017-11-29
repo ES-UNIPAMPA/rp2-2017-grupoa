@@ -27,11 +27,11 @@ import midia.Musica;
  */
 public class InteracaoMusicas extends Interacao {
 
-    CadastroJogo cadastroJogo;
+    FormularioJogo cadastroJogo;
 
     public InteracaoMusicas(String tituloColecao, Colecao colecao) {
         super(tituloColecao, colecao);
-        this.cadastroJogo = new CadastroJogo();
+        this.cadastroJogo = new FormularioJogo(colecao);
     }
 
     @Override
@@ -57,11 +57,11 @@ public class InteracaoMusicas extends Interacao {
                 JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
             }
 
-            super.tabela.setRowCount(0);
+            super.modelTabela.setRowCount(0);
 
             for (Object midia : super.colecao.exibirMidia()) {
                 Musica musica = (Musica) midia;
-                super.tabela.addRow(new Object[]{
+                super.modelTabela.addRow(new Object[]{
                     musica.getCaminho(),
                     musica.getTitulo(),
                     musica.getDescricao(),
@@ -89,12 +89,17 @@ public class InteracaoMusicas extends Interacao {
 
     @Override
     protected void layoutTabela() {
-        jTable_tabela.setModel(super.tabela = new DefaultTableModel(
+        jTable_tabela.setModel(super.modelTabela = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
                     "Caminho", "Titulo", "Descrição","Idioma", "Genero", "Autores","Interpretes","Duração", "Ano"
                 }
-        ));
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            };
+        });
 
         jScrollPane_colecao.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane_colecao.setViewportView(jTable_tabela);

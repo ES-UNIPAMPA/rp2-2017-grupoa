@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -44,9 +45,10 @@ public class TelaOld extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public TelaOld() {
+        modeloTabela();
         initComponents();
         this.colecaoJogos = new ColecaoJogos(new ArrayList());
-        this.tabelaJogos = (DefaultTableModel) jTable2.getModel();
+        jTable2.setAutoCreateRowSorter(true);
 
     }
 
@@ -68,6 +70,7 @@ public class TelaOld extends javax.swing.JFrame {
         jButton_Jogos_excluir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Biblioteca de mídias");
@@ -95,31 +98,22 @@ public class TelaOld extends javax.swing.JFrame {
 
         jButton_Jogos_excluir.setText("Excluir selecionado");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Teste", "Teste", "Teste", "Teste"},
-                {"Teste1", "Teste1", "Teste1", "Teste1"},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        jTable2.setModel(this.tabelaJogos);
+        jTable2.setRequestFocusEnabled(false);
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(jTable2);
+
+        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_colecaoJogosLayout = new javax.swing.GroupLayout(jPanel_colecaoJogos);
         jPanel_colecaoJogos.setLayout(jPanel_colecaoJogosLayout);
@@ -134,8 +128,10 @@ public class TelaOld extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_colecaoJogosLayout.createSequentialGroup()
-                                .addComponent(jLabel_Jogos_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                                .addGap(514, 514, 514)
+                                .addComponent(jLabel_Jogos_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton_Jogos_cadastrar)
                                 .addGap(39, 39, 39)
                                 .addComponent(jButton_Jogos_importar)
@@ -151,11 +147,12 @@ public class TelaOld extends javax.swing.JFrame {
                 .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel_Jogos_titulo)
-                        .addComponent(jButton_Jogos_cadastrar))
+                        .addComponent(jButton_Jogos_cadastrar)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel_colecaoJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton_Jogos_importar)
                         .addComponent(jButton_Jogos_exportar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_Jogos_excluir)
@@ -238,12 +235,48 @@ public class TelaOld extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Jogos_importarActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-
-        //JOptionPane.showMessageDialog(null, );
-        
+        if (evt.getClickCount() == 2) {
+            JTable target = (JTable) evt.getSource();
+            int row = target.getSelectedRow();
+            JOptionPane.showMessageDialog(null, tabelaJogos.getValueAt(row, 1));
+        }
 
     }//GEN-LAST:event_jTable2MouseClicked
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void modeloTabela() {
+        this.tabelaJogos = new DefaultTableModel(
+                new Object[][]{
+                    {"Teste", "Teste", "Teste", "Teste"},
+                    {"Teste1", "Teste1", "Teste1", "Teste1"},
+                    {"a", "a", "a", "a"},
+                    {null, null, null, null}
+                },
+                new String[]{
+                    "Title 1", "Title 2", "Title 3", "Title 4"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        ;
+    }
+
+    ;
+    }
     /**
      * @param args the command line arguments
      */
@@ -312,5 +345,6 @@ public class TelaOld extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane_colecoes;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

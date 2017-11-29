@@ -79,12 +79,13 @@ public class ColecaoPodcast extends Colecao {
                 ano = Integer.parseInt(buff.readLine());
 
                 //instancia o objeto com os atributos lidos acima
-                super.cadastrarMidia(new Podcast(caminho, nome, descricao, idioma, autores, ano));
+                super.cadastrarMidia(new Podcast(caminho, nome, descricao, idioma, new ArrayList(autores), ano));
 
                 buff.readLine();
-                buff.close();
-                reader.close();
             }
+
+            buff.close();
+            reader.close();
         }
     }
 

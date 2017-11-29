@@ -5,7 +5,6 @@
  */
 package view;
 
-import interacao.Interacao;
 
 import colecao.ColecaoJogos;
 import colecao.ColecaoMusica;

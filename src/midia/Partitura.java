@@ -16,11 +16,11 @@ import java.util.List;
 public class Partitura extends Midia {
 
     private String genero;
-    private String autores;
+    private List<String> autores;
     private int ano;
-    private String instrumentos;
+    private List<String> instrumentos;
 
-    public Partitura(String caminho, String nome, String descricao, String genero, String autores, int ano, String instrumentos) {
+    public Partitura(String caminho, String nome, String descricao, String genero, List<String> autores, int ano, List<String> instrumentos) {
         super(caminho, nome, descricao);
         this.genero = genero;
         this.autores = autores;
@@ -51,7 +51,7 @@ public class Partitura extends Midia {
      *
      * @return String
      */
-    public String getAutores() {
+    public List<String> getAutores() {
         return this.autores;
     }
 
@@ -60,7 +60,7 @@ public class Partitura extends Midia {
      *
      * @param autores String
      */
-    public void setAutores(String autores) {
+    public void setAutores(List<String> autores) {
         this.autores = autores;
     }
 
@@ -87,7 +87,7 @@ public class Partitura extends Midia {
      *
      * @return instrumentos
      */
-    public String getInstrumentos() {
+    public List<String> getInstrumentos() {
         return this.instrumentos;
     }
 
@@ -96,7 +96,7 @@ public class Partitura extends Midia {
      *
      * @param instrumentos String
      */
-    public void setInstrumentos(String instrumentos) {
+    public void setInstrumentos(List<String> instrumentos) {
         this.instrumentos = instrumentos;
     }
 

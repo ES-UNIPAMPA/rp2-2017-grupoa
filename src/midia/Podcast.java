@@ -35,7 +35,7 @@ public class Podcast extends Midia {
     public Podcast(String caminho, String nome, String descricao, String idioma, List<String> autores, int ano) {
         super(caminho, nome, descricao);
         this.idioma = idioma;
-        this.autores = new ArrayList(autores);
+        this.autores = autores;
         this.ano = ano;
     }
 

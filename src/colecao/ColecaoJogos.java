@@ -57,12 +57,15 @@ public class ColecaoJogos extends Colecao {
             numeroJogadores = Integer.parseInt(buff.readLine());
             suporteRede = Boolean.parseBoolean(buff.readLine());
 
-            super.cadastrarMidia(new Jogo(caminho, titulo, descricao, genero, autores, ano, numeroJogadores, suporteRede));
+            super.cadastrarMidia(new Jogo(caminho, titulo, descricao, genero, new ArrayList(autores), ano, numeroJogadores, suporteRede));
 
             //Solta uma linha
             buff.readLine();
             autores.clear();
         }
+
+        buff.close();
+        reader.close();
     }
 
     @Override

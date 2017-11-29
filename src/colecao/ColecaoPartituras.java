@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import midia.Midia;
 
@@ -38,9 +40,9 @@ public class ColecaoPartituras extends Colecao {
         String descricao;
 
         String genero;
-        String autores;
+        List<String> autores = new ArrayList();
         int ano;
-        String instrumentos;
+        List<String> instrumentos = new ArrayList();
 
         while ((caminho = buff.readLine()) != null) {
 
@@ -49,15 +51,20 @@ public class ColecaoPartituras extends Colecao {
 
             // Atributos da classe
             genero = buff.readLine();
-            autores = buff.readLine();
+            autores.addAll(Arrays.asList(buff.readLine().split(";")));
             ano = Integer.parseInt(buff.readLine());
-            instrumentos = buff.readLine();
+            instrumentos.addAll(Arrays.asList(buff.readLine().split(";")));
 
-            super.cadastrarMidia(new Partitura(caminho, titulo, descricao, genero, autores, ano, instrumentos));
+            super.cadastrarMidia(new Partitura(caminho, titulo, descricao, genero, new ArrayList(autores), ano, new ArrayList(instrumentos)));
 
             //Solta uma linha
             buff.readLine();
+            autores.clear();
+            instrumentos.clear();
         }
+        
+        buff.close();
+        reader.close();
     }
 
     @Override

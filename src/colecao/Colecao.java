@@ -38,11 +38,14 @@ public abstract class Colecao implements IColecao {
      * Recebe uma midia por parametro e a adiciona ao array listaDeMidias
      *
      * @param midia
-     * @return
      */
     @Override
-    public boolean cadastrarMidia(Midia midia) {
-        return this.listaDeMidias.add(midia);
+    public void cadastrarMidia(Midia midia) throws IllegalArgumentException, NumberFormatException {
+        if (!this.listaDeMidias.add(midia)) {
+            throw new IllegalArgumentException("Essa mídia não pôde ser inserida.\nVerifique os dados informados.");
+        }
+
+        ordenar();
     }
 
     /**
@@ -89,7 +92,26 @@ public abstract class Colecao implements IColecao {
 
     /**
      *
-     * Recebe uma String pesquisa, e percore a listaDeMidias até encontrar a
+     * Recebe uma String pesquisa, e percorre a listaDeMidias até encontrar a
+     * midia especifica e encontrada pelo método contains, retornando a primeira
+     * que encontrar.
+     *
+     * @param pesquisa
+     * @return
+     */
+    @Override
+    public Midia consultarMidia(String pesquisa) {
+        for (Midia midia : listaDeMidias) {
+            if (midia.contains(pesquisa)) {
+                return midia;
+            }
+        }
+        return null;
+    }
+
+    /**
+     *
+     * Recebe uma String pesquisa, e percorre a listaDeMidias até encontrar a
      * midia especifica e encontrada pelo método contais, adicionando-a a uma
      * nova lista e a retornando!
      *
@@ -97,7 +119,7 @@ public abstract class Colecao implements IColecao {
      * @return
      */
     @Override
-    public List consultarMidia(String pesquisa) {
+    public List consultarMidias(String pesquisa) {
         List<Midia> lista = new ArrayList();
         for (Midia midia : listaDeMidias) {
             if (midia.contains(pesquisa)) {
@@ -115,6 +137,7 @@ public abstract class Colecao implements IColecao {
      */
     @Override
     public List exibirMidia() {
+        ordenar();
         return this.listaDeMidias;
     }
 
