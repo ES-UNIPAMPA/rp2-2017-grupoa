@@ -27,8 +27,6 @@ import java.util.List;
  */
 public class ColecaoMusica extends Colecao {
 
-    private List<Musica> listaDeMusica;
-
     public ColecaoMusica(List<Midia> listaDeMidia) {
         super(listaDeMidia);
     }

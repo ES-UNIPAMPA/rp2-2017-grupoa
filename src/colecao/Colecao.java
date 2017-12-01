@@ -44,7 +44,6 @@ public abstract class Colecao implements IColecao {
         if (!this.listaDeMidias.add(midia)) {
             throw new IllegalArgumentException("Essa mídia não pôde ser inserida.\nVerifique os dados informados.");
         }
-
         ordenar();
     }
 

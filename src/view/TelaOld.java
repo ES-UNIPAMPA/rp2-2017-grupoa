@@ -95,6 +95,11 @@ public class TelaOld extends javax.swing.JFrame {
         jLabel_Jogos_titulo.setText("Biblioteca de Jogos");
 
         jButton_Jogos_cadastrar.setText("Cadastrar novo");
+        jButton_Jogos_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Jogos_cadastrarActionPerformed(evt);
+            }
+        });
 
         jButton_Jogos_excluir.setText("Excluir selecionado");
 
@@ -246,6 +251,10 @@ public class TelaOld extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton_Jogos_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Jogos_cadastrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Jogos_cadastrarActionPerformed
 
     private void modeloTabela() {
         this.tabelaJogos = new DefaultTableModel(
