@@ -91,6 +91,12 @@ public class FormularioJogo extends JFrame {
 
         labelCaminho.setText("Caminho");
 
+        campoCaminho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCaminhoActionPerformed(evt);
+            }
+        });
+
         labelTitulo.setText("Titulo");
 
         labelDescricao.setText("Descrição");
@@ -108,6 +114,11 @@ public class FormularioJogo extends JFrame {
         labelAno.setText("Ano");
 
         campoAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        campoAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoAnoActionPerformed(evt);
+            }
+        });
 
         labelAutor.setText("Autor");
 
@@ -345,6 +356,14 @@ public class FormularioJogo extends JFrame {
             JOptionPane.showMessageDialog(null, "O nome do autor não pode ser vazio.");
         }
     }//GEN-LAST:event_bntAdicionarAutorActionPerformed
+
+    private void campoCaminhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCaminhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCaminhoActionPerformed
+
+    private void campoAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoAnoActionPerformed
 
     public String getCaminho() {
         return campoCaminho.getText();

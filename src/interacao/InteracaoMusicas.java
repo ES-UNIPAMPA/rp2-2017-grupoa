@@ -16,22 +16,21 @@ import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import midia.Jogo;
 import midia.Musica;
 
 /**
  *
- * @author Gustavo Bittecourt Satheler
- * <gustavo.satheler@alunos.unipampa.edu.br>
- * <gustavosatheler@gmail.com>
+ * @author Leonardo Severo Pedroso
+ * <leopedroso45@gmail.com>
+ *
  */
 public class InteracaoMusicas extends Interacao {
 
-    FormularioJogo cadastroJogo;
+    FormularioMusica cadastroMusica;
 
     public InteracaoMusicas(String tituloColecao, Colecao colecao) {
         super(tituloColecao, colecao);
-        this.cadastroJogo = new FormularioJogo(colecao);
+        this.cadastroMusica = new FormularioMusica(colecao);
     }
 
     @Override
@@ -80,10 +79,7 @@ public class InteracaoMusicas extends Interacao {
     protected void botaoCadastrar() {
         jButton_cadastrar.setText("Cadastrar novo");
         jButton_cadastrar.addActionListener((ActionEvent evt) -> {
-            cadastroJogo.setUndecorated(true);
-            cadastroJogo.setResizable(false);
-            cadastroJogo.setVisible(true);
-
+            cadastroMusica.setVisible(true);
         });
     }
 
@@ -92,17 +88,38 @@ public class InteracaoMusicas extends Interacao {
         jTable_tabela.setModel(super.modelTabela = new DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "Caminho", "Titulo", "Descrição","Idioma", "Genero", "Autores","Interpretes","Duração", "Ano"
+                    "Caminho", "Titulo", "Descrição", "Idioma", "Genero", "Autores", "Interpretes", "Duração", "Ano"
                 }
-        ){
+        ) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
-            };
+            }
+        ;
         });
 
         jScrollPane_colecao.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane_colecao.setViewportView(jTable_tabela);
+    }
+
+    @Override
+    protected void atualizarTabela() {
+        modelTabela.setRowCount(0);
+
+        for (Object midia : colecao.exibirMidia()) {
+            Musica musica = (Musica) midia;
+            modelTabela.addRow(new Object[]{
+                musica.getCaminho(),
+                musica.getTitulo(),
+                musica.getDescricao(),
+                musica.getIdioma(),
+                musica.getGenero(),
+                musica.getAutores(),
+                musica.getInterpretes(),
+                musica.getDuracao(),
+                musica.getAno()
+            });
+        }
     }
 
 }

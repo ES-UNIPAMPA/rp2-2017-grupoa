@@ -16,7 +16,9 @@ import midia.Musica;
 
 /**
  *
- * @author leope
+ * @author Leonardo Severo Pedroso
+ * <leopedroso45@gmail.com>
+ *
  */
 public class FormularioMusica extends javax.swing.JFrame {
 
@@ -262,8 +264,8 @@ public class FormularioMusica extends javax.swing.JFrame {
                     .addComponent(idiomaI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(generoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -352,6 +354,21 @@ public class FormularioMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public List<String> getAutores() {
+        ListModel<String> ListaDeAutores = campoAutores.getModel();
+        List<String> listaAutoresNova = new ArrayList();
+        for (int i = 0; i < ListaDeAutores.getSize(); i++) {
+            if (!ListaDeAutores.getElementAt(i).equals("")) {
+                listaAutoresNova.add(ListaDeAutores.getElementAt(i));
+            }
+        }
+        return listaAutoresNova;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<String> getInterpretes() {
         ListModel<String> modeloListaDeAutores = campoAutores.getModel();
         List<String> listaAutoresNova = new ArrayList();
         for (int i = 0; i < modeloListaDeAutores.getSize(); i++) {
@@ -361,12 +378,48 @@ public class FormularioMusica extends javax.swing.JFrame {
         }
         return listaAutoresNova;
     }
+
+    public String getCaminho() {
+        return caminhoI.getText();
+    }
+
+    public String getTitulo() {
+        return tituloI.getText();
+    }
+
+    public String getDescricao() {
+        return descricaoI.getText();
+    }
+
+    public String getIdioma() {
+        return idiomaI.getText();
+    }
+
+    public String getGenero() {
+        return generoI.getText();
+    }
+
+    public int getDuracao() {
+        return Integer.parseInt(duracaoI.getText());
+    }
+
+    public int getAno() {
+        return Integer.parseInt(anoI.getText());
+    }
+
+
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         try {
-            Musica musica;
-            musica = new Musica(tText(), generoI.ge
-                    }
+            Musica musica = new Musica(getCaminho(), getTitulo(), getDescricao(), getIdioma(), getGenero(), getAutores(), getInterpretes(), getDuracao(), getAno());
+            colecao.cadastrarMidia(musica);
+            JOptionPane.showMessageDialog(null, "Midia inserida com sucesso.");
+            dispose();
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
 

@@ -206,6 +206,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campoCaminho">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoCaminhoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelTitulo">
           <Properties>
@@ -271,6 +274,9 @@
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoAnoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAutor">
           <Properties>
