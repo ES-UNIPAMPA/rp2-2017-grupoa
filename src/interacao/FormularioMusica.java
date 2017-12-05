@@ -293,6 +293,10 @@ public class FormularioMusica extends javax.swing.JFrame {
         this.tabela = tabela;
     }
 
+    public void setModoCadastrar() {
+        this.musicaAnterior = null;
+    }
+
     public void setModoEditar(String caminho, String titulo) {
         Musica musica1 = (Musica) colecao.consultarMidia(caminho);
         Musica musica2 = (Musica) colecao.consultarMidia(titulo);

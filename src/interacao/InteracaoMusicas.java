@@ -66,9 +66,12 @@ public class InteracaoMusicas extends Interacao {
     protected void botaoCadastrar() {
         jButton_cadastrar.setText("Cadastrar novo");
         jButton_cadastrar.addActionListener((ActionEvent evt) -> {
+            cadastroMusica.setModoCadastrar();
+            cadastroMusica.setTabela(modelTabela);
             cadastroMusica.setVisible(true);
+            atualizarTabela();
         });
-        this.atualizarTabela();
+        
     }
 
     @Override
