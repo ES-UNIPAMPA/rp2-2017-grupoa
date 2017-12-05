@@ -5,16 +5,19 @@
  */
 package interacao;
 
-
 import java.awt.Toolkit;
 import java.awt.Dimension;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.GroupLayout;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -30,14 +33,13 @@ public class InteracaoPrincipal {
     private JTabbedPane jTabbedPane_colecoes;
 
     public InteracaoPrincipal() {
+        this.newStyle();
         this.JFrame_principal = new JFrame();
         this.jTabbedPane_colecoes = new JTabbedPane();
         this.painelColecoes();
     }
 
     public void iniciar() {
-        this.centralizarComponente();
-        this.JFrame_principal.setVisible(true);
         this.JFrame_principal.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.JFrame_principal.setTitle("Biblioteca de mídias");
         GroupLayout layout = new GroupLayout(this.JFrame_principal.getContentPane());
@@ -47,18 +49,13 @@ public class InteracaoPrincipal {
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(jTabbedPane_colecoes));
 
         this.JFrame_principal.pack();
+        this.JFrame_principal.setLocationRelativeTo(null);
+        this.JFrame_principal.setVisible(true);
     }
 
     private void painelColecoes() {
         jTabbedPane_colecoes.setTabPlacement(JTabbedPane.LEFT);
         jTabbedPane_colecoes.setSelectedIndex(-1);
-    }
-    
-    public void centralizarComponente() {
-        Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension dw = JFrame_principal.getSize();
-        this.JFrame_principal.setLocation((ds.width - dw.width) / 16, (ds.height - dw.height) / 32);
-        //this.JFrame_principal.setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2); ORIGINAL
     }
 
     public static String carregarArquivo() {
@@ -83,5 +80,18 @@ public class InteracaoPrincipal {
 
     public JTabbedPane getjTabbedPane_colecoes() {
         return jTabbedPane_colecoes;
+    }
+
+    private void newStyle() {
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(InteracaoPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -26,8 +26,10 @@ import java.util.logging.Logger;
 import javax.swing.GroupLayout;
 import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle;
+import javax.swing.ListSelectionModel;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
+import midia.Midia;
 
 /**
  *
@@ -42,13 +44,14 @@ public abstract class Interacao {
     protected JButton jButton_excluir;
     protected JButton jButton_importar;
     private JButton jButton_exportar;
-    private JLabel jLabel_titulo;
-    private JPanel jPanel_colecao;
+    protected JLabel jLabel_titulo;
+    protected JPanel jPanel_colecao;
     protected JScrollPane jScrollPane_colecao;
     private JSeparator jSeparator_colecao;
     protected JTable jTable_tabela;
-    DefaultTableModel modelTabela;
+    protected DefaultTableModel modelTabela;
     protected Colecao colecao;
+    protected InteracaoTodos interacaoTodos;
 
     public Interacao(String tituloColecao, Colecao colecao) {
         this.tituloColecao = tituloColecao;
@@ -106,6 +109,7 @@ public abstract class Interacao {
     private void botaoExcluir() {
         jButton_excluir.setText("Excluir selecionado");
         jButton_excluir.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent evt) {
                 String tituloLinha;
                 int linha = jTable_tabela.getSelectedRow();
@@ -115,9 +119,12 @@ public abstract class Interacao {
                     linha = jTable_tabela.getSelectedRow();
                     jTable_tabela.setModel(modelTabela);
 
-                    colecao.removerMidia(tituloLinha);
-
-                    JOptionPane.showMessageDialog(null, "Titulo removido: " + tituloLinha);
+                    if (colecao.removerMidia(tituloLinha)) {
+                        JOptionPane.showMessageDialog(null, "Titulo removido: " + tituloLinha);
+                        if (interacaoTodos != null) {
+                            atualizarTabelaMaster();
+                        }
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Nenhuma linha da tabela foi selecionada");
                 }
@@ -130,7 +137,7 @@ public abstract class Interacao {
         jLabel_titulo.setText("Biblioteca de " + this.tituloColecao);
     }
 
-    private void setLayout() {
+    protected void setLayout() {
         GroupLayout jPanel_colecaoLayout = new GroupLayout(jPanel_colecao);
         jPanel_colecao.setLayout(jPanel_colecaoLayout);
         jPanel_colecaoLayout.setHorizontalGroup(
@@ -182,26 +189,43 @@ public abstract class Interacao {
                         )
         );
 
-        jTable_tabela.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTable_tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         jTable_tabela.setRequestFocusEnabled(false);
         jTable_tabela.setAutoCreateRowSorter(true);
-        
+
+    }
+
+    protected void botaoImportar(Colecao colecao) {
+        jButton_importar.setText("Importar arquivo");
+        jButton_importar.addActionListener((ActionEvent evt) -> {
+            String arquivo = carregarArquivo();
+
+            try {
+                colecao.importarMidias(arquivo);
+                JOptionPane.showMessageDialog(null, "Mídias inseridas com sucesso.");
+
+            } catch (NumberFormatException ex) {
+                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Dados incompatíveis com essa mídia.");
+
+            } catch (NullPointerException ex) {
+                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
+
+            } catch (IOException ex) {
+                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
+            }
+
+            this.atualizarTabela();
+            this.addMidiaNaTabelaMaster();
+            this.atualizarTabelaMaster();
+        });
     }
 
     /**
      * Os métodos abaixo deverão ser implementados em uma classe filha
-     *
-     *
-     * @param colecao Coleção que será passada por parâmetro que será
-     * administrada.
      */
-    protected void botaoImportar(Colecao colecao) {
-        jButton_importar.setText("Importar arquivo");
-        jButton_importar.addActionListener((ActionEvent evt) -> {
-            JOptionPane.showMessageDialog(null, "Não implementado - botaoImportar");
-        });
-    }
-
     protected void botaoCadastrar() {
         jButton_cadastrar.setText("Cadastrar novo");
         jButton_cadastrar.addActionListener((ActionEvent evt) -> {
@@ -220,7 +244,6 @@ public abstract class Interacao {
                 }
             }
         });
-        
     }
 
     protected void layoutTabela() {
@@ -245,4 +268,33 @@ public abstract class Interacao {
         JOptionPane.showMessageDialog(null, "Não implementado - atualizarTabela");
     }
 
+    public void addInteracaoTodos(InteracaoTodos interacaoTodos) {
+        this.interacaoTodos = interacaoTodos;
+    }
+
+    public DefaultTableModel tabelaMaster() {
+        return this.modelTabela;
+    }
+
+    protected void addMidiaNaTabelaMaster() {
+        for (Midia midia : colecao.exibirMidia()) {
+            interacaoTodos.colecao.cadastrarMidia(midia);
+        }
+    }
+
+    protected void atualizarTabelaMaster() {
+        interacaoTodos.tabelaMaster().setRowCount(0);
+
+        for (Midia midia : interacaoTodos.colecao.exibirMidia()) {
+            Midia midiaTemp = (Midia) midia;
+            if (!midiaTemp.getTitulo().equals("null")) {
+                interacaoTodos.tabelaMaster().addRow(new Object[]{
+                    midiaTemp.getClass().getName().split("[.]")[1],
+                    midiaTemp.getCaminho(),
+                    midiaTemp.getTitulo(),
+                    midiaTemp.getDescricao()
+                });
+            }
+        }
+    }
 }

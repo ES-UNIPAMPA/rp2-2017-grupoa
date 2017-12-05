@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
@@ -39,39 +38,13 @@ public class InteracaoJogos extends Interacao {
     }
 
     @Override
-    protected void botaoImportar(Colecao colecao) {
-        jButton_importar.setText("Importar arquivo");
-        jButton_importar.addActionListener((ActionEvent evt) -> {
-            String arquivo = carregarArquivo();
-
-            try {
-                colecao.importarMidias(arquivo);
-                JOptionPane.showMessageDialog(null, "Mídias inseridas com sucesso.");
-
-            } catch (NumberFormatException ex) {
-                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Dados incompatíveis com essa mídia.");
-
-            } catch (NullPointerException ex) {
-                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
-
-            } catch (IOException ex) {
-                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
-            }
-
-            this.atualizarTabela();
-        });
-    }
-
-    @Override
     protected void botaoCadastrar() {
         jButton_cadastrar.setText("Cadastrar novo");
         jButton_cadastrar.addActionListener((ActionEvent evt) -> {
             formulario.setModoCadastrar();
 
             formulario.setTabela(modelTabela);
+            formulario.setInteracaoTodos(interacaoTodos);
             formulario.setVisible(true);
         });
     }
@@ -88,6 +61,7 @@ public class InteracaoJogos extends Interacao {
 
                     formulario.setModoEditar(caminhoAnterior, tituloAnterior);
                     formulario.setTabela(modelTabela);
+                    formulario.setInteracaoTodos(interacaoTodos);
                     formulario.setVisible(true);
                 }
             }

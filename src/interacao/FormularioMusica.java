@@ -6,12 +6,18 @@
 package interacao;
 
 import colecao.Colecao;
+import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
+import midia.Midia;
 import midia.Musica;
 
 /**
@@ -28,14 +34,20 @@ public class FormularioMusica extends javax.swing.JFrame {
     private Colecao colecao;
     private Musica musicaAnterior;
 
+    private InteracaoTodos interacaoTodos;
+
     /**
      * Creates new form FormularioMusica
+     *
+     * @param colecao
      */
     public FormularioMusica(Colecao colecao) {
+        initComponents();
+        btnClose();
         this.colecao = colecao;
         this.listaAutores = new DefaultListModel();
+        this.listaInterpretes = new DefaultListModel();
         this.musicaAnterior = null;
-        initComponents();
     }
 
     /**
@@ -47,7 +59,7 @@ public class FormularioMusica extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        panelMusica = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         caminhoI = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -73,52 +85,39 @@ public class FormularioMusica extends javax.swing.JFrame {
         campoInterpretes = new javax.swing.JList<>();
         btnRemoveAutor = new javax.swing.JButton();
         btnRemoveInterprete = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         duracaoI = new javax.swing.JFormattedTextField();
         anoI = new javax.swing.JFormattedTextField();
+        tituloFormulario = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(440, 460));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setText("Insira as informações da Música");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 11, -1, -1));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(360, 653));
+        setResizable(false);
 
         jLabel2.setText("Caminho:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, -1, -1));
-        getContentPane().add(caminhoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 51, 158, -1));
 
         jLabel3.setText("Titulo:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 31, -1, -1));
-        getContentPane().add(tituloI, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 51, 162, -1));
 
         jLabel4.setText("Descrição:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, -1));
-        getContentPane().add(descricaoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, 326, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 128, 346, 10));
 
         jLabel5.setText("Idioma:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 144, -1, -1));
 
         jLabel6.setText("Genero:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 144, -1, -1));
 
-        jLabel7.setText("<html><center>Autores:</center></html>");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 253, 160, -1));
+        jLabel7.setText("<html><center>Autor:</center></html>");
 
         jLabel8.setText("<html><center>Interpretes:</center></html>");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 253, 160, -1));
 
         jLabel9.setText("Duração:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 202, -1, -1));
 
         jLabel10.setText("Ano:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 202, -1, -1));
-        getContentPane().add(idiomaI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 164, 160, -1));
-        getContentPane().add(generoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 164, 162, -1));
-        getContentPane().add(campoAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 273, 160, -1));
-        getContentPane().add(campoInterprete, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 273, 160, -1));
+
+        idiomaI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idiomaIActionPerformed(evt);
+            }
+        });
 
         btnAdicionarAutor.setText("Adicionar");
         btnAdicionarAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -126,7 +125,6 @@ public class FormularioMusica extends javax.swing.JFrame {
                 btnAdicionarAutorActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdicionarAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 299, -1, -1));
 
         btnAdicionarInterprete.setText("Adicionar");
         btnAdicionarInterprete.addActionListener(new java.awt.event.ActionListener() {
@@ -134,17 +132,12 @@ public class FormularioMusica extends javax.swing.JFrame {
                 btnAdicionarInterpreteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdicionarInterprete, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 299, -1, -1));
 
         campoAutores.setMaximumSize(new java.awt.Dimension(420, 0));
         jScrollPane.setViewportView(campoAutores);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 328, 160, 109));
-
         campoInterpretes.setMaximumSize(new java.awt.Dimension(420, 0));
         jScrollPane1.setViewportView(campoInterpretes);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 328, 160, 109));
 
         btnRemoveAutor.setText("Remover autor");
         btnRemoveAutor.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +145,6 @@ public class FormularioMusica extends javax.swing.JFrame {
                 btnRemoveAutorActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRemoveAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 443, -1, -1));
 
         btnRemoveInterprete.setText("Remover Interprete");
         btnRemoveInterprete.addActionListener(new java.awt.event.ActionListener() {
@@ -160,15 +152,6 @@ public class FormularioMusica extends javax.swing.JFrame {
                 btnRemoveInterpreteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRemoveInterprete, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 443, -1, -1));
-
-        jButton5.setText("Salvar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 486, -1, -1));
 
         jButton6.setText("Cancelar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -176,30 +159,187 @@ public class FormularioMusica extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 486, -1, -1));
-        getContentPane().add(duracaoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 150, -1));
-        getContentPane().add(anoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 160, -1));
+
+        duracaoI.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        anoI.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        tituloFormulario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tituloFormulario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloFormulario.setText("Insira a informação da Música");
+
+        jButton5.setText("Salvar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelMusicaLayout = new javax.swing.GroupLayout(panelMusica);
+        panelMusica.setLayout(panelMusicaLayout);
+        panelMusicaLayout.setHorizontalGroup(
+            panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMusicaLayout.createSequentialGroup()
+                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tituloFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelMusicaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(campoInterprete, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelMusicaLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(btnAdicionarAutor)
+                        .addGap(99, 99, 99)
+                        .addComponent(btnAdicionarInterprete)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelMusicaLayout.createSequentialGroup()
+                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelMusicaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelMusicaLayout.createSequentialGroup()
+                                    .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(caminhoI, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(tituloI, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel4)
+                                .addGroup(panelMusicaLayout.createSequentialGroup()
+                                    .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(idiomaI, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(generoI, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(descricaoI))
+                            .addGroup(panelMusicaLayout.createSequentialGroup()
+                                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(duracaoI, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(anoI, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panelMusicaLayout.createSequentialGroup()
+                                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panelMusicaLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelMusicaLayout.createSequentialGroup()
+                                .addComponent(jButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5))
+                            .addGroup(panelMusicaLayout.createSequentialGroup()
+                                .addComponent(btnRemoveAutor)
+                                .addGap(58, 58, 58)
+                                .addComponent(btnRemoveInterprete)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelMusicaLayout.setVerticalGroup(
+            panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMusicaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tituloFormulario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(caminhoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tituloI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelMusicaLayout.createSequentialGroup()
+                        .addComponent(descricaoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(idiomaI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(generoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(duracaoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(anoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoInterprete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAdicionarAutor)
+                            .addComponent(btnAdicionarInterprete))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRemoveInterprete)
+                    .addComponent(btnRemoveAutor))
+                .addGap(18, 18, 18)
+                .addGroup(panelMusicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelMusica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarAutorActionPerformed
-        // TODO add your handling code here:
-        String autor = duracaoI.getText();
+
+        String autor = campoAutor.getText();
         if (autor != null && !autor.equals("")) {
             this.listaAutores.addElement(autor);
             campoAutores.setModel(listaAutores);
+            campoAutor.setText(null);
         } else {
             JOptionPane.showMessageDialog(null, "O nome do autor precisa ser informado.");
         }
     }//GEN-LAST:event_btnAdicionarAutorActionPerformed
 
     private void btnAdicionarInterpreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarInterpreteActionPerformed
-        // TODO add your handling code here:
         String interprete = campoInterprete.getText();
         if (interprete != null && !interprete.equals("")) {
             this.listaInterpretes.addElement(interprete);
             campoInterpretes.setModel(listaInterpretes);
+            campoInterprete.setText(null);
         } else {
             JOptionPane.showMessageDialog(null, "O nome do interprete precisa ser informado.");
         }
@@ -211,15 +351,13 @@ public class FormularioMusica extends javax.swing.JFrame {
         if (autorSelecionado != -1) {
             this.listaAutores.remove(autorSelecionado);
             campoAutores.setModel(listaAutores);
-            JOptionPane.showMessageDialog(null, "Autor removido com sucesso! ");
-
+            JOptionPane.showMessageDialog(null, "Autor removido com sucesso!");
         } else {
             JOptionPane.showMessageDialog(null, "Selecione o autor que você deseja remover na caixa de texto acima.");
         }
     }//GEN-LAST:event_btnRemoveAutorActionPerformed
 
     private void btnRemoveInterpreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInterpreteActionPerformed
-        // TODO add your handling code here:
         int interpreteSelecionado = campoInterpretes.getSelectedIndex();
         if (interpreteSelecionado != -1) {
             this.listaInterpretes.remove(interpreteSelecionado);
@@ -231,8 +369,8 @@ public class FormularioMusica extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveInterpreteActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        dispose();
+        this.setVisible(false);
+        this.limparCampos();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public List<String> getAutores() {
@@ -251,7 +389,7 @@ public class FormularioMusica extends javax.swing.JFrame {
      * @return
      */
     public List<String> getInterpretes() {
-        ListModel<String> modeloListaDeAutores = campoAutores.getModel();
+        ListModel<String> modeloListaDeAutores = campoInterpretes.getModel();
         List<String> listaAutoresNova = new ArrayList();
         for (int i = 0; i < modeloListaDeAutores.getSize(); i++) {
             if (!modeloListaDeAutores.getElementAt(i).equals("")) {
@@ -312,6 +450,7 @@ public class FormularioMusica extends javax.swing.JFrame {
             musica1.getAutores().forEach((autor) -> {
                 listaAutores.addElement(autor);
             });
+
             campoAutores.setModel(listaAutores);
             musica1.getInterpretes().forEach((interprete) -> {
                 listaInterpretes.addElement(interprete);
@@ -321,23 +460,118 @@ public class FormularioMusica extends javax.swing.JFrame {
             this.anoI.setValue(musica1.getAno());
 
         } else {
-            JOptionPane.showMessageDialog(null, "Erro inesperado.");
+            JOptionPane.showMessageDialog(null, "Erro inesperado.\nPor favor, contacte o administrador.");
+        }
+    }
+
+    private boolean hasModoCadastrar() {
+        return (this.musicaAnterior == null);
+    }
+
+    private void atualizarTabela() {
+        this.tabela.setRowCount(0);
+
+        for (Object midia : colecao.exibirMidia()) {
+            Musica musica = (Musica) midia;
+            tabela.addRow(new Object[]{
+                musica.getCaminho(),
+                musica.getTitulo(),
+                musica.getDescricao(),
+                musica.getIdioma(),
+                musica.getGenero(),
+                musica.getAutores(),
+                musica.getInterpretes(),
+                musica.getDuracao(),
+                musica.getAno()
+            });
+        }
+    }
+
+    private void limparCampos() {
+        for (int i = 0; i < panelMusica.getComponentCount(); i++) {
+            //varre todos os componentes
+            Component c = panelMusica.getComponent(i);
+            if (c instanceof JTextField) {
+                //apaga os valores
+                JTextField jtextfield = (JTextField) c;
+                jtextfield.setText(null);
+            } else if (c instanceof JFormattedTextField) {
+                JFormattedTextField jformattedtextfield = (JFormattedTextField) c;
+                jformattedtextfield.setValue(null);
+            }
+        }
+
+        campoAutores.setModel((listaAutores = new DefaultListModel()));
+        campoInterpretes.setModel((listaInterpretes = new DefaultListModel()));
+    }
+
+    private void btnClose() {
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                setVisible(false);
+                limparCampos();
+            }
+        });
+    }
+
+    public void setInteracaoTodos(InteracaoTodos interacaoTodos) {
+        this.interacaoTodos = interacaoTodos;
+    }
+
+    protected void atualizarTabelaMaster() {
+        interacaoTodos.tabelaMaster().setRowCount(0);
+
+        for (Midia midia : interacaoTodos.colecao.exibirMidia()) {
+            Midia midiaTemp = (Midia) midia;
+            if (!midiaTemp.getTitulo().equals("null")) {
+                interacaoTodos.tabelaMaster().addRow(new Object[]{
+                    midiaTemp.getClass().getName().split("[.]")[1],
+                    midiaTemp.getCaminho(),
+                    midiaTemp.getTitulo(),
+                    midiaTemp.getDescricao()
+                });
+            }
         }
     }
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            Musica musica = new Musica(getCaminho(), getTitulo(), getDescricao(), getIdioma(), getGenero(), getAutores(), getInterpretes(), getDuracao(), getAno());
-            colecao.cadastrarMidia(musica);
-            JOptionPane.showMessageDialog(null, "Midia inserida com sucesso.");
-            dispose();
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        if (hasModoCadastrar()) {
+            try {
+                Musica musica = new Musica(getCaminho(), getTitulo(), getDescricao(), getIdioma(), getGenero(), getAutores(), getInterpretes(), getDuracao(), getAno());
+                colecao.cadastrarMidia(musica);
+                interacaoTodos.colecao.cadastrarMidia(musica);
+                this.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Midia inserida com sucesso.");
+                this.limparCampos();
+                this.atualizarTabela();
+                this.atualizarTabelaMaster();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        } else {
+            try {
+                Musica musicaNova = new Musica(getCaminho(), getTitulo(), getDescricao(), getIdioma(), getGenero(), getAutores(), getInterpretes(), getDuracao(), getAno());
+                colecao.editarMidia(this.musicaAnterior.getTitulo(), musicaNova);
+                interacaoTodos.colecao.editarMidia(this.musicaAnterior.getTitulo(), musicaNova);
+                this.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Midia alterada com sucesso.");
+                this.atualizarTabela();
+                this.atualizarTabelaMaster();
+                this.limparCampos();
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            } catch (IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void idiomaIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idiomaIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idiomaIActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -357,7 +591,6 @@ public class FormularioMusica extends javax.swing.JFrame {
     private javax.swing.JTextField idiomaI;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -370,6 +603,8 @@ public class FormularioMusica extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel panelMusica;
+    private javax.swing.JLabel tituloFormulario;
     private javax.swing.JTextField tituloI;
     // End of variables declaration//GEN-END:variables
 }

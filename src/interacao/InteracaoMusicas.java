@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
@@ -33,33 +32,8 @@ public class InteracaoMusicas extends Interacao {
     public InteracaoMusicas(String tituloColecao, Colecao colecao) {
         super(tituloColecao, colecao);
         this.cadastroMusica = new FormularioMusica(colecao);
-    }
-
-    @Override
-    protected void botaoImportar(Colecao colecao) {
-        jButton_importar.setText("Importar arquivo");
-        jButton_importar.addActionListener((ActionEvent evt) -> {
-            String arquivo = carregarArquivo();
-
-            try {
-                super.colecao.importarMidias(arquivo);
-                JOptionPane.showMessageDialog(null, "Mídias inseridas com sucesso.");
-
-            } catch (NumberFormatException ex) {
-                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Dados incompatíveis com essa mídia.");
-
-            } catch (NullPointerException ex) {
-                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Nenhum arquivo foi selecionado.");
-
-            } catch (IOException ex) {
-                Logger.getLogger(Interacao.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
-            }
-
-            this.atualizarTabela();
-        });
+        this.cadastroMusica.setLocationRelativeTo(null);
+        this.cadastroMusica.setResizable(false);
     }
 
     @Override
@@ -68,10 +42,11 @@ public class InteracaoMusicas extends Interacao {
         jButton_cadastrar.addActionListener((ActionEvent evt) -> {
             cadastroMusica.setModoCadastrar();
             cadastroMusica.setTabela(modelTabela);
+            cadastroMusica.setInteracaoTodos(interacaoTodos);
             cadastroMusica.setVisible(true);
             atualizarTabela();
         });
-        
+
     }
 
     @Override
@@ -86,12 +61,13 @@ public class InteracaoMusicas extends Interacao {
                     
                     cadastroMusica.setModoEditar(caminhoAnterior, tituloAnterior);
                     cadastroMusica.setTabela(modelTabela);
+                    cadastroMusica.setInteracaoTodos(interacaoTodos);
                     cadastroMusica.setVisible(true);
                 }
             }
         });
     }
-
+    
     @Override
     protected void layoutTabela() {
         jTable_tabela.setModel(super.modelTabela = new DefaultTableModel(

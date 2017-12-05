@@ -24,15 +24,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="panelCadastro" min="-2" max="-2" attributes="0"/>
-          </Group>
+          <Component id="panelCadastro" min="-2" pref="356" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelCadastro" alignment="0" max="-2" attributes="0"/>
+          <Component id="panelCadastro" alignment="1" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -40,7 +37,7 @@
     <Container class="javax.swing.JPanel" name="panelCadastro">
       <Properties>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Cursor Padr&#xe3;o"/>
+          <Color id="Default Cursor"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -51,82 +48,83 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="tituloFormulario" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="tituloFormulario" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="labelDescricao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labelAutores" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="campoAno" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
-                                                  <Component id="labelAno" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="labelAutor" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="campoAutor" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="labelGenero" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="campoGenero" min="-2" pref="154" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="campoQntJogadores" max="32767" attributes="0"/>
-                                                  <Component id="labelQntJogadores" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="labelSuporteRede" max="32767" attributes="0"/>
-                                                  <Component id="comboBoxSuporteRede" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="campoCaminho" alignment="0" min="-2" pref="189" max="-2" attributes="0"/>
-                                                  <Component id="labelCaminho" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="campoTitulo" min="-2" pref="213" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Component id="campoDescricao" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
-                                          <Component id="btnCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="separador" alignment="0" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="labelDescricao" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelAutores" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="campoAno" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                                      <Component id="labelAno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="labelAutor" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                          <Component id="campoAutor" min="-2" pref="127" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="bntAdicionarAutor" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="243" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="btnRemoverAutor" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnSalvar" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bntAdicionarAutor" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelGenero" min="-2" max="-2" attributes="0"/>
+                                      <Component id="campoGenero" min="-2" pref="126" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="labelQntJogadores" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="campoQntJogadores" min="-2" pref="111" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="labelSuporteRede" max="32767" attributes="0"/>
+                                      <Component id="comboBoxSuporteRede" min="-2" pref="77" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Component id="btnCancelar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="separador" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="campoCaminho" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                                      <Component id="labelCaminho" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
+                                      <Component id="campoTitulo" min="-2" pref="162" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="campoDescricao" alignment="0" min="-2" pref="334" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jScrollPane" min="-2" pref="334" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRemoverAutor" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -161,7 +159,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="campoGenero" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="campoQntJogadores" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="comboBoxSuporteRede" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="comboBoxSuporteRede" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -172,7 +170,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="campoAno" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="campoAutor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bntAdicionarAutor" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      <Component id="bntAdicionarAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Component id="labelAutores" min="-2" max="-2" attributes="0"/>
@@ -180,7 +178,7 @@
                   <Component id="jScrollPane" min="-2" pref="109" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnRemoverAutor" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -235,7 +233,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelQntJogadores">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Quantidade de Jogadores"/>
+            <Property name="text" type="java.lang.String" value="Qnt de Jogadores"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="campoQntJogadores">
@@ -311,7 +309,7 @@
                   <StringArray count="0"/>
                 </Property>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[420, 0]"/>
+                  <Dimension value="[334, 109]"/>
                 </Property>
               </Properties>
               <AuxValues>

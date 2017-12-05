@@ -61,6 +61,7 @@ public abstract class Colecao implements IColecao {
         for (Midia midia : listaDeMidias) {
             if (midia.contains(pesquisa)) {
                 if (this.listaDeMidias.remove(midia)) {
+                    midia.setTitulo("null");
                     return true;
                 }
             }
@@ -118,7 +119,7 @@ public abstract class Colecao implements IColecao {
      * @return
      */
     @Override
-    public List consultarMidias(String pesquisa) {
+    public List<Midia> consultarMidias(String pesquisa) {
         List<Midia> lista = new ArrayList();
         for (Midia midia : listaDeMidias) {
             if (midia.contains(pesquisa)) {
@@ -135,7 +136,7 @@ public abstract class Colecao implements IColecao {
      * @return listaDeMidias
      */
     @Override
-    public List exibirMidia() {
+    public List<Midia> exibirMidia() {
         ordenar();
         return this.listaDeMidias;
     }

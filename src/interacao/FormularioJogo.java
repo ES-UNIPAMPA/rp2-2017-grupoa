@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 import midia.Jogo;
+import midia.Midia;
 
 /**
  *
@@ -28,6 +29,7 @@ public class FormularioJogo extends JFrame {
 
     private DefaultListModel modeloListaAutores;
     private DefaultTableModel tabela;
+    private InteracaoTodos interacaoTodos;
     private Colecao colecao;
     private Jogo jogoAnterior;
 
@@ -103,7 +105,7 @@ public class FormularioJogo extends JFrame {
 
         labelGenero.setText("Gênero");
 
-        labelQntJogadores.setText("Quantidade de Jogadores");
+        labelQntJogadores.setText("Qnt de Jogadores");
 
         campoQntJogadores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
@@ -131,7 +133,7 @@ public class FormularioJogo extends JFrame {
 
         labelAutores.setText("Autores inseridos");
 
-        listAutores.setMaximumSize(new java.awt.Dimension(420, 0));
+        listAutores.setMaximumSize(new java.awt.Dimension(334, 109));
         jScrollPane.setViewportView(listAutores);
 
         btnRemoverAutor.setText("Remover autor selecionado");
@@ -160,61 +162,63 @@ public class FormularioJogo extends JFrame {
         panelCadastroLayout.setHorizontalGroup(
             panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroLayout.createSequentialGroup()
-                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(tituloFormulario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tituloFormulario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(panelCadastroLayout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(labelDescricao, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labelAutores, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLayout.createSequentialGroup()
-                                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(labelAno))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelAutor)
-                                                .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLayout.createSequentialGroup()
-                                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createSequentialGroup()
-                                                    .addComponent(labelGenero)
-                                                    .addGap(126, 126, 126))
-                                                .addGroup(panelCadastroLayout.createSequentialGroup()
-                                                    .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(7, 7, 7)))
-                                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(campoQntJogadores)
-                                                .addComponent(labelQntJogadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(labelSuporteRede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(comboBoxSuporteRede, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLayout.createSequentialGroup()
-                                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(labelCaminho))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelTitulo)
-                                                .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(campoDescricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(separador, javax.swing.GroupLayout.Alignment.LEADING))))
-                            .addGroup(panelCadastroLayout.createSequentialGroup()
-                                .addGap(243, 243, 243)
-                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnRemoverAutor)
-                                    .addComponent(btnSalvar)
-                                    .addComponent(bntAdicionarAutor))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane)))
-                .addContainerGap())
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelDescricao, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelAutores, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLayout.createSequentialGroup()
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelAno))
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(labelAutor))
+                                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(bntAdicionarAutor))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLayout.createSequentialGroup()
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelGenero)
+                                    .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                                        .addComponent(labelQntJogadores)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(campoQntJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelSuporteRede, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboBoxSuporteRede, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(separador, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCadastroLayout.createSequentialGroup()
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoCaminho, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelCaminho))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelTitulo)
+                                    .addComponent(campoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(campoDescricao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(86, 86, 86)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSalvar)
+                            .addComponent(btnRemoverAutor))))
+                .addGap(96, 96, 96))
         );
         panelCadastroLayout.setVerticalGroup(
             panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +248,7 @@ public class FormularioJogo extends JFrame {
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoQntJogadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxSuporteRede, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxSuporteRede, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAno)
@@ -253,14 +257,14 @@ public class FormularioJogo extends JFrame {
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntAdicionarAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bntAdicionarAutor))
                 .addGap(7, 7, 7)
                 .addComponent(labelAutores)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemoverAutor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar))
@@ -271,13 +275,11 @@ public class FormularioJogo extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(panelCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -293,18 +295,21 @@ public class FormularioJogo extends JFrame {
             try {
                 Jogo jogo = new Jogo(getCaminho(), getTitulo(), getDescricao(), getGenero(), getAutores(), getAno(), getQntJogadores(), getSuporteRede());
                 colecao.cadastrarMidia(jogo);
+                interacaoTodos.colecao.cadastrarMidia(jogo);
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Midia inserida com sucesso.");
                 this.atualizarTabela();
+                this.atualizarTabelaMaster();
                 this.limparCampos();
 
             } catch (ArithmeticException ex) {
                 colecao.cadastrarMidia(new Jogo(getCaminho(), getTitulo(), getDescricao(), getGenero(), getAutores(), getAno(), getQntJogadores(), getSuporteRede()));
+                interacaoTodos.colecao.cadastrarMidia(new Jogo(getCaminho(), getTitulo(), getDescricao(), getGenero(), getAutores(), getAno(), getQntJogadores(), getSuporteRede()));
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Midia inserida com sucesso.\n" + ex.getMessage());
-                this.limparCampos();
                 this.atualizarTabela();
-
+                this.atualizarTabelaMaster();
+                this.limparCampos();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             } catch (IllegalArgumentException ex) {
@@ -314,17 +319,21 @@ public class FormularioJogo extends JFrame {
             try {
                 Jogo jogoNovo = new Jogo(getCaminho(), getTitulo(), getDescricao(), getGenero(), getAutores(), getAno(), getQntJogadores(), getSuporteRede());
                 colecao.editarMidia(this.jogoAnterior.getTitulo(), jogoNovo);
+                interacaoTodos.colecao.editarMidia(this.jogoAnterior.getTitulo(), jogoNovo);
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Midia alterada com sucesso.");
                 this.atualizarTabela();
+                this.atualizarTabelaMaster();
                 this.limparCampos();
 
             } catch (ArithmeticException ex) {
                 colecao.editarMidia(this.jogoAnterior.getTitulo(), new Jogo(getCaminho(), getTitulo(), getDescricao(), getGenero(), getAutores(), getAno(), getQntJogadores(), getSuporteRede()));
+                interacaoTodos.colecao.editarMidia(this.jogoAnterior.getTitulo(), new Jogo(getCaminho(), getTitulo(), getDescricao(), getGenero(), getAutores(), getAno(), getQntJogadores(), getSuporteRede()));
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Midia alterada com sucesso.\n" + ex.getMessage());
-                this.limparCampos();
                 this.atualizarTabela();
+                this.atualizarTabelaMaster();
+                this.limparCampos();
 
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -497,6 +506,26 @@ public class FormularioJogo extends JFrame {
                 limparCampos();
             }
         });
+    }
+
+    public void setInteracaoTodos(InteracaoTodos interacaoTodos) {
+        this.interacaoTodos = interacaoTodos;
+    }
+
+    protected void atualizarTabelaMaster() {
+        interacaoTodos.tabelaMaster().setRowCount(0);
+
+        for (Midia midia : interacaoTodos.colecao.exibirMidia()) {
+            Midia midiaTemp = (Midia) midia;
+            if (!midiaTemp.getTitulo().equals("null")) {
+                interacaoTodos.tabelaMaster().addRow(new Object[]{
+                    midiaTemp.getClass().getName().split("[.]")[1],
+                    midiaTemp.getCaminho(),
+                    midiaTemp.getTitulo(),
+                    midiaTemp.getDescricao()
+                });
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
