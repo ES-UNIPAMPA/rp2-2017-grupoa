@@ -63,77 +63,104 @@ public class FormularioMusica extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         idiomaI = new javax.swing.JTextField();
         generoI = new javax.swing.JTextField();
-        duracaoI = new javax.swing.JTextField();
-        anoI = new javax.swing.JTextField();
         campoAutor = new javax.swing.JTextField();
         campoInterprete = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAdicionarAutor = new javax.swing.JButton();
+        btnAdicionarInterprete = new javax.swing.JButton();
         jScrollPane = new javax.swing.JScrollPane();
         campoAutores = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoInterpretes = new javax.swing.JList<>();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnRemoveAutor = new javax.swing.JButton();
+        btnRemoveInterprete = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        duracaoI = new javax.swing.JFormattedTextField();
+        anoI = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(440, 460));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Insira as informações da Música");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 11, -1, -1));
 
         jLabel2.setText("Caminho:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, -1, -1));
+        getContentPane().add(caminhoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 51, 158, -1));
 
         jLabel3.setText("Titulo:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 31, -1, -1));
+        getContentPane().add(tituloI, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 51, 162, -1));
 
         jLabel4.setText("Descrição:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 77, -1, -1));
+        getContentPane().add(descricaoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, 326, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 128, 346, 10));
 
         jLabel5.setText("Idioma:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 144, -1, -1));
 
         jLabel6.setText("Genero:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 144, -1, -1));
 
         jLabel7.setText("<html><center>Autores:</center></html>");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 253, 160, -1));
 
         jLabel8.setText("<html><center>Interpretes:</center></html>");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 253, 160, -1));
 
         jLabel9.setText("Duração:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 202, -1, -1));
 
         jLabel10.setText("Ano:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 202, -1, -1));
+        getContentPane().add(idiomaI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 164, 160, -1));
+        getContentPane().add(generoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(174, 164, 162, -1));
+        getContentPane().add(campoAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 273, 160, -1));
+        getContentPane().add(campoInterprete, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 273, 160, -1));
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionarAutor.setText("Adicionar");
+        btnAdicionarAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAdicionarAutorActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAdicionarAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 299, -1, -1));
 
-        jButton2.setText("Adicionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionarInterprete.setText("Adicionar");
+        btnAdicionarInterprete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAdicionarInterpreteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAdicionarInterprete, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 299, -1, -1));
 
         campoAutores.setMaximumSize(new java.awt.Dimension(420, 0));
         jScrollPane.setViewportView(campoAutores);
 
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 328, 160, 109));
+
         campoInterpretes.setMaximumSize(new java.awt.Dimension(420, 0));
         jScrollPane1.setViewportView(campoInterpretes);
 
-        jButton3.setText("Remover autor");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 328, 160, 109));
 
-        jButton4.setText("Remover Interprete");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnRemoveAutor.setText("Remover autor");
+        btnRemoveAutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnRemoveAutorActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRemoveAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 443, -1, -1));
+
+        btnRemoveInterprete.setText("Remover Interprete");
+        btnRemoveInterprete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveInterpreteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRemoveInterprete, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 443, -1, -1));
 
         jButton5.setText("Salvar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +168,7 @@ public class FormularioMusica extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 486, -1, -1));
 
         jButton6.setText("Cancelar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -148,171 +176,25 @@ public class FormularioMusica extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(descricaoI, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(caminhoI, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(tituloI)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(idiomaI)
-                                    .addComponent(jLabel9)
-                                    .addComponent(duracaoI)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(anoI)
-                                            .addComponent(generoI)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(128, 128, 128)
-                                        .addComponent(jLabel6)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoInterprete)))))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(53, 53, 53))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton4))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(caminhoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tituloI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(descricaoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idiomaI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(generoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(duracaoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anoI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoInterprete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
-                .addContainerGap())
-        );
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 486, -1, -1));
+        getContentPane().add(duracaoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 150, -1));
+        getContentPane().add(anoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAdicionarAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarAutorActionPerformed
         // TODO add your handling code here:
-        String autor = campoAutor.getText();
+        String autor = duracaoI.getText();
         if (autor != null && !autor.equals("")) {
             this.listaAutores.addElement(autor);
             campoAutores.setModel(listaAutores);
         } else {
             JOptionPane.showMessageDialog(null, "O nome do autor precisa ser informado.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAdicionarAutorActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAdicionarInterpreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarInterpreteActionPerformed
         // TODO add your handling code here:
         String interprete = campoInterprete.getText();
         if (interprete != null && !interprete.equals("")) {
@@ -321,9 +203,9 @@ public class FormularioMusica extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "O nome do interprete precisa ser informado.");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAdicionarInterpreteActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnRemoveAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveAutorActionPerformed
         // TODO add your handling code here:
         int autorSelecionado = campoAutores.getSelectedIndex();
         if (autorSelecionado != -1) {
@@ -334,9 +216,9 @@ public class FormularioMusica extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Selecione o autor que você deseja remover na caixa de texto acima.");
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnRemoveAutorActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnRemoveInterpreteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveInterpreteActionPerformed
         // TODO add your handling code here:
         int interpreteSelecionado = campoInterpretes.getSelectedIndex();
         if (interpreteSelecionado != -1) {
@@ -346,7 +228,7 @@ public class FormularioMusica extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Seleciona o interprete que você deseja remover na caixa de texto acima.");
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnRemoveInterpreteActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -407,6 +289,37 @@ public class FormularioMusica extends javax.swing.JFrame {
         return Integer.parseInt(anoI.getText());
     }
 
+    public void setTabela(DefaultTableModel tabela) {
+        this.tabela = tabela;
+    }
+
+    public void setModoEditar(String caminho, String titulo) {
+        Musica musica1 = (Musica) colecao.consultarMidia(caminho);
+        Musica musica2 = (Musica) colecao.consultarMidia(titulo);
+
+        if ((musica1 != null && musica2 != null) && (musica1.equals(musica2))) {
+            this.musicaAnterior = musica1;
+            this.caminhoI.setText(musica1.getCaminho());
+            this.tituloI.setText(musica1.getTitulo());
+            this.descricaoI.setText(musica1.getDescricao());
+            this.idiomaI.setText(musica1.getIdioma());
+            this.generoI.setText(musica1.getGenero());
+
+            musica1.getAutores().forEach((autor) -> {
+                listaAutores.addElement(autor);
+            });
+            campoAutores.setModel(listaAutores);
+            musica1.getInterpretes().forEach((interprete) -> {
+                listaInterpretes.addElement(interprete);
+            });
+            campoInterpretes.setModel(listaInterpretes);
+            this.duracaoI.setValue(musica1.getDuracao());
+            this.anoI.setValue(musica1.getAno());
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro inesperado.");
+        }
+    }
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
@@ -424,20 +337,20 @@ public class FormularioMusica extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField anoI;
+    private javax.swing.JFormattedTextField anoI;
+    private javax.swing.JButton btnAdicionarAutor;
+    private javax.swing.JButton btnAdicionarInterprete;
+    private javax.swing.JButton btnRemoveAutor;
+    private javax.swing.JButton btnRemoveInterprete;
     private javax.swing.JTextField caminhoI;
     private javax.swing.JTextField campoAutor;
     private javax.swing.JList<String> campoAutores;
     private javax.swing.JTextField campoInterprete;
     private javax.swing.JList<String> campoInterpretes;
     private javax.swing.JTextField descricaoI;
-    private javax.swing.JTextField duracaoI;
+    private javax.swing.JFormattedTextField duracaoI;
     private javax.swing.JTextField generoI;
     private javax.swing.JTextField idiomaI;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;

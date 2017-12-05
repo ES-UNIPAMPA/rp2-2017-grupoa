@@ -180,25 +180,18 @@ public class Musica extends Midia {
         this.ano = ano;
     }
 
-    @Deprecated
-    public boolean adicionarAutor(String autor) {
-        return this.autores.add(autor);
-    }
-
-    @Deprecated
-    public void adicionarInterprete(String interprete) {
-        this.interpretes.add(interprete);
-    }
-
-    @Deprecated
-    public void exibirAutor() {
-        for (String autor : autores) {
-            System.out.println(autor);
-        }
-    }
-
     @Override
     public String toString() {
-        return super.toString() + this.genero + "\n" + super.listToString(this.autores) + "\n" + this.ano + "\n" + this.idioma + "\n" + super.listToString(this.interpretes) + "\n" + this.duracao + "\n";
+        return super.toString() + this.idioma + "\r\n" + this.genero + "\r\n" + super.listToString(this.autores) + "\r\n" + super.listToString(this.interpretes) + "\r\n" + this.duracao + "\r\n" + this.ano + "\r\n";
+    }
+
+    public int compareTo(Musica musica2) {
+        if (this.getAno() < musica2.getAno()) {
+            return -1;
+        } else if (this.getAno() > musica2.getAno()) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

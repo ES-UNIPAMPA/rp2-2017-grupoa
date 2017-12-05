@@ -92,13 +92,36 @@ public class ColecaoMusica extends Colecao {
         }
     }
 
-    /**
-     * Not implemented yet!
-     */
-    @Deprecated
-    @Override
+     @Override
     public void ordenar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean houveTroca;
+        do {
+            houveTroca = false;
+            for (int i = 0; i < super.listaDeMidias.size() - 2; i++) {
+                Musica musica = (Musica) listaDeMidias.get(i);
+                Musica musica2 = (Musica) listaDeMidias.get(i + 1);
+                if (musica.compareTo(musica2) > 0) {
+                    Musica aux = (Musica) listaDeMidias.get(i);
+                    listaDeMidias.set(i, listaDeMidias.get(i + 1));
+                    listaDeMidias.set(i + 1, aux);
+                    houveTroca = true;
+                }
+            }
+            if (!houveTroca) {
+                break;
+            }
+            for (int i = listaDeMidias.size() - 2; i >= 0; i--) {
+                Musica musica = (Musica) listaDeMidias.get(i);
+                Musica musica2 = (Musica) listaDeMidias.get(i + 1);
+                if (musica.compareTo(musica2) > 0) {
+                    Musica aux = (Musica) listaDeMidias.get(i);
+                    listaDeMidias.set(i, listaDeMidias.get(i + 1));
+                    listaDeMidias.set(i + 1, aux);
+                    houveTroca = true;
+                }
+            }
+
+        } while (houveTroca);
     }
 
 }

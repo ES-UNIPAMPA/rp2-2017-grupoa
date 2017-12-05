@@ -8,6 +8,8 @@ package interacao;
 import colecao.Colecao;
 import static interacao.InteracaoPrincipal.carregarArquivo;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,22 +58,7 @@ public class InteracaoMusicas extends Interacao {
                 JOptionPane.showMessageDialog(null, "Não foi possivel inserir a mídia.\n" + ex.getMessage());
             }
 
-            super.modelTabela.setRowCount(0);
-
-            for (Object midia : super.colecao.exibirMidia()) {
-                Musica musica = (Musica) midia;
-                super.modelTabela.addRow(new Object[]{
-                    musica.getCaminho(),
-                    musica.getTitulo(),
-                    musica.getDescricao(),
-                    musica.getIdioma(),
-                    musica.getGenero(),
-                    musica.getAutores(),
-                    musica.getInterpretes(),
-                    musica.getDuracao(),
-                    musica.getAno()
-                });
-            }
+            this.atualizarTabela();
         });
     }
 
@@ -80,6 +67,25 @@ public class InteracaoMusicas extends Interacao {
         jButton_cadastrar.setText("Cadastrar novo");
         jButton_cadastrar.addActionListener((ActionEvent evt) -> {
             cadastroMusica.setVisible(true);
+        });
+        this.atualizarTabela();
+    }
+
+    @Override
+    protected void eventoEditar() {
+        jTable_tabela.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent evt) {
+                if (evt.getClickCount() == 2) {
+                    int row = jTable_tabela.getSelectedRow();
+                    String caminhoAnterior = (String) jTable_tabela.getValueAt(row, 0);
+                    String tituloAnterior = (String) jTable_tabela.getValueAt(row, 1);
+                    
+                    cadastroMusica.setModoEditar(caminhoAnterior, tituloAnterior);
+                    cadastroMusica.setTabela(modelTabela);
+                    cadastroMusica.setVisible(true);
+                }
+            }
         });
     }
 
