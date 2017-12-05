@@ -5,7 +5,6 @@
  */
 package view;
 
-import colecao.Colecao;
 import colecao.ColecaoJogos;
 import colecao.ColecaoMusica;
 import colecao.ColecaoTodos;
@@ -14,9 +13,6 @@ import interacao.InteracaoMusicas;
 import interacao.InteracaoPrincipal;
 import interacao.InteracaoTodos;
 import java.util.ArrayList;
-import java.util.List;
-import midia.Jogo;
-import midia.Midia;
 
 /**
  *
